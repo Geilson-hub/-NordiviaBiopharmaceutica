@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
        ===================================================== */
     const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
     const defaultMessage = encodeURIComponent(
-        'Como podemos lhe ajudar?'
+        'Gostaria de saber mais sobre os produtos, por favor.'
     );
 
     whatsappLinks.forEach(link => {
