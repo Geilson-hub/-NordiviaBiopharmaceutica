@@ -1,11 +1,11 @@
 /**
  * =====================================================
- * ODONTO SORRISO - CLÍNICA ODONTOLÓGICA
+ * NORDIVIA BIOPHARMACEUTICA
  * Script Principal
  * =====================================================
  *
  * Este arquivo contém todas as funcionalidades JavaScript
- * da landing page da clínica odontológica.
+ * da landing page da Nordivia Biopharmaceutica.
  *
  * FUNCIONALIDADES:
  * - Menu mobile (hambúrguer)
@@ -16,7 +16,7 @@
  *
  * ===================================================== */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     /* =====================================================
        1. MENU MOBILE (HAMBÚRGUER)
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (navToggle && navMenu) {
         // Toggle do menu
-        navToggle.addEventListener('click', function() {
+        navToggle.addEventListener('click', function () {
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
@@ -34,14 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Fecha menu ao clicar em link
         const navLinks = navMenu.querySelectorAll('a');
         navLinks.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
             });
         });
 
         // Fecha menu ao clicar fora
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const links = document.querySelectorAll('a[href^="#"]');
 
     links.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
 
             if (href !== '#') {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
 
-        question.addEventListener('click', function() {
+        question.addEventListener('click', function () {
             const isActive = item.classList.contains('active');
 
             // Fecha todos
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
        ===================================================== */
     const header = document.getElementById('header');
 
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const currentScroll = window.pageYOffset;
 
         if (currentScroll > 100) {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         threshold: 0.1
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    document.addEventListener('scroll', function() {
+    document.addEventListener('scroll', function () {
         animateElements.forEach(el => {
             if (el.classList.contains('in-view')) {
                 el.style.opacity = '1';
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mapaPlaceholder = document.querySelector('.mapa-placeholder');
 
     if (mapaPlaceholder) {
-        mapaPlaceholder.addEventListener('click', function() {
+        mapaPlaceholder.addEventListener('click', function () {
             // EDITÁVEL: Altere o endereço aqui
             const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=Rua+dos+Dentistas+500+Centro+São+Paulo+SP';
             window.open(mapsUrl, '_blank');
