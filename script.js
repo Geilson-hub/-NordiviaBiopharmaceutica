@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
        ===================================================== */
     const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
     const defaultMessage = encodeURIComponent(
-        'Olá! Gostaria de agendar uma avaliação odontológica.'
+        'Como podemos lhe ajudar?'
     );
 
     whatsappLinks.forEach(link => {
