@@ -1721,24 +1721,18 @@ section {
     gap: 12px;
 }
 
-.btn-pagar {
-    width: 100%;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: var(--white);
-    padding: 16px 24px;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+#paypal-button-container {
+    min-height: 50px;
 }
 
-.btn-pagar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
-}
-
-.btn-pagar:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    transform: none;
+.paypal-erro {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: var(--radius-sm);
+    color: #ff6b6b;
+    font-size: 0.9rem;
 }
 
 .btn-whatsapp-checkout {
@@ -1752,6 +1746,46 @@ section {
 .btn-whatsapp-checkout:hover {
     background: #128c7e;
     transform: translateY(-2px);
+}
+
+/* Pagamento Sucesso */
+.pagamento-sucesso {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.sucesso-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.pagamento-sucesso h2 {
+    font-size: 1.8rem;
+    color: var(--text);
+    margin-bottom: 15px;
+}
+
+.pagamento-sucesso p {
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.sucesso-detalhes {
+    background: var(--bg);
+    padding: 20px;
+    border-radius: var(--radius-sm);
+    margin: 25px 0;
+    text-align: left;
+}
+
+.sucesso-detalhes p {
+    margin-bottom: 8px;
+}
+
+.sucesso-email {
+    margin-bottom: 25px;
+    font-size: 0.95rem;
 }
 
 /* Resumo do Pedido */

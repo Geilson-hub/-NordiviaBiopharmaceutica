@@ -7,7 +7,7 @@
     <meta name="description" content="Finalizar compra - Nordivia Biopharmaceuticals">
     <title>Finalizar Compra | Nordivia Biopharmaceuticals</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=BRL"></script>
 </head>
 
 <body>
@@ -139,11 +139,11 @@
 
                         <div class="payment-methods">
                             <label class="payment-option active">
-                                <input type="radio" name="pagamento" value="stripe" checked>
+                                <input type="radio" name="pagamento" value="paypal" checked>
                                 <div class="payment-card">
                                     <span class="payment-icon">💳</span>
-                                    <span class="payment-name">Cartão de Crédito</span>
-                                    <span class="payment-desc">Parcele em até 6x sem juros</span>
+                                    <span class="payment-name">PayPal</span>
+                                    <span class="payment-desc">Cartão de crédito ou conta PayPal</span>
                                 </div>
                             </label>
 
@@ -166,9 +166,7 @@
                         </div>
 
                         <div class="checkout-buttons">
-                            <button type="submit" class="btn btn-pagar" id="btnPagar">
-                                💳 Pagar com Cartão
-                            </button>
+                            <div id="paypal-button-container"></div>
                             <button type="button" class="btn btn-whatsapp-checkout" id="btnWhatsApp" style="display:none;">
                                 📱 Combinar via WhatsApp
                             </button>

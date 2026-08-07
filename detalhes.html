@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="detalhes-botoes">
-                        <a href="#" id="btn-comprar" class="btn btn-comprar" target="_blank">Comprar Agora</a>
+                        <a href="javascript:void(0)" id="btn-comprar" class="btn btn-comprar">Comprar Agora</a>
                         <a href="produtos.html" class="btn btn-detalhes">Ver Outros Produtos</a>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                     document.getElementById('spec-armazenamento').textContent = produto.armazenamento;
                     document.getElementById('spec-validade').textContent = produto.prazoValidade;
                     
-                    document.getElementById('btn-comprar').href = `https://wa.me/5511956970564?text=Olá! Gostaria de comprar o produto ${produto.nome}.`;
+                    document.getElementById('btn-comprar').href = `checkout.html?id=${produto.id}`;
                 } else {
                     document.getElementById('produto-titulo').textContent = 'Produto não encontrado';
                 }

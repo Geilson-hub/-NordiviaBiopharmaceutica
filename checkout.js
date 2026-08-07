@@ -1,25 +1,18 @@
 /**
  * =====================================================
- * CHECKOUT - Sistema de Pagamento
+ * CHECKOUT - Sistema de Pagamento PayPal
  * =====================================================
  */
 
 document.addEventListener('DOMContentLoaded', function () {
 
     // ========================================
-    // CONFIGURAÇÃO STRIPE (MODO TESTE)
+    // CONFIGURAÇÃO PAYPAL (MODO TESTE)
     // ========================================
-    // IMPORTANTE: Substitua pela sua chave pública do Stripe
-    // Para teste, use a chave public_test do seu painel Stripe
-    const STRIPE_PUBLIC_KEY = 'pk_test_TYooMQauvdEDq54NiTphI7jx'; // Chave de teste do Stripe
-    const STRIPE_PRICE_ID = 'price_XXXXXXXXXXXXXXXX'; // Substitua pelo ID do preço no Stripe
-
-    let stripe = null;
-    try {
-        stripe = Stripe(STRIPE_PUBLIC_KEY);
-    } catch (e) {
-        console.log('Stripe não configurado usando modo de teste');
-    }
+    // IMPORTANTE: Substitua pelo seu Client ID do PayPal
+    // Para teste, use o Client ID do PayPal Sandbox
+    // Para produção, use o Client ID do PayPal Live
+    const PAYPAL_CLIENT_ID = 'YOUR_PAYPAL_CLIENT_ID'; // Substitua pelo seu Client ID
 
     // ========================================
     // DADOS DOS PRODUTOS (PREÇOS DE TESTE)
@@ -57,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const produtoId = urlParams.get('id');
     let produtoInfo = null;
     let valorProduto = 0;
+    let parcelasSelecionadas = 1;
 
     if (produtoId && precos[produtoId]) {
         produtoInfo = precos[produtoId];
@@ -79,7 +73,175 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('resumo-categoria').textContent = produtoCompleto.categoria;
             }
         }
+
+        // Inicializar PayPal
+        inicializarPayPal();
     }
+
+    // ========================================
+    // INICIALIZAR PAYPAL
+    // ========================================
+    function inicializarPayPal() {
+        const paypalContainer = document.getElementById('paypal-button-container');
+        
+        if (typeof paypal === 'undefined') {
+            paypalContainer.innerHTML = '<p class="paypal-erro">PayPal não configurado. Configure seu Client ID.</p>';
+            return;
+        }
+
+        paypalContainer.innerHTML = '';
+
+        paypal.Buttons({
+            style: {
+                layout: 'vertical',
+                color: 'blue',
+                shape: 'rect',
+                label: 'pay',
+                height: 50
+            },
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        description: produtoInfo.nome,
+                        amount: {
+                            currency_code: 'BRL',
+                            value: (valorProduto / parcelasSelecionadas).toFixed(2),
+                            breakdown: {
+                                item_total: {
+                                    currency_code: 'BRL',
+                                    value: (valorProduto / parcelasSelecionadas).toFixed(2)
+                                }
+                            }
+                        },
+                        items: [{
+                            name: produtoInfo.nome,
+                            description: produtoInfo.nome,
+                            unit_amount: {
+                                currency_code: 'BRL',
+                                value: (valorProduto / parcelasSelecionadas).toFixed(2)
+                            },
+                            quantity: '1'
+                        }]
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(detalhes) {
+                    mostrarSucesso(detalhes);
+                });
+            },
+            onError: function(err) {
+                console.error('Erro no PayPal:', err);
+                alert('Erro ao processar pagamento. Tente novamente.');
+            },
+            onCancel: function(data) {
+                alert('Pagamento cancelado.');
+            }
+        }).render('#paypal-button-container');
+    }
+
+    // ========================================
+    // MOSTRAR SUCESSO
+    // ========================================
+    function mostrarSucesso(detalhes) {
+        const container = document.querySelector('.checkout-form');
+        container.innerHTML = `
+            <div class="pagamento-sucesso">
+                <div class="sucesso-icon">✅</div>
+                <h2>Pagamento Aprovado!</h2>
+                <p>Obrigado pela sua compra, <strong>${detalhes.payer.name.given_name}</strong>!</p>
+                <p>Seu pedido <strong>#${detalhes.id}</strong> foi confirmado.</p>
+                <div class="sucesso-detalhes">
+                    <p><strong>Produto:</strong> ${produtoInfo.nome}</p>
+                    <p><strong>Valor:</strong> ${formatarMoeda(valorProduto)}</p>
+                    <p><strong>Status:</strong> ${detalhes.status}</p>
+                </div>
+                <p class="sucesso-email">Um e-mail de confirmação foi enviado para: <strong>${detalhes.payer.email_address}</strong></p>
+                <a href="produtos.html" class="btn btn-primary">Continuar Comprando</a>
+            </div>
+        `;
+    }
+
+    // ========================================
+    // MÁSCARAS DE INPUT
+    // ========================================
+    const cpfInput = document.getElementById('cpf');
+    const telefoneInput = document.getElementById('telefone');
+    const cepInput = document.getElementById('cep');
+
+    cpfInput.addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        e.target.value = value;
+    });
+
+    telefoneInput.addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+        value = value.replace(/(\d{2})(\d)/, '($1) $2');
+        value = value.replace(/(\d{5})(\d)/, '$1-$2');
+        e.target.value = value;
+    });
+
+    cepInput.addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 8) value = value.slice(0, 8);
+        value = value.replace(/(\d{5})(\d)/, '$1-$2');
+        e.target.value = value;
+    });
+
+    // ========================================
+    // SELEÇÃO DE MÉTODO DE PAGAMENTO
+    // ========================================
+    const paymentOptions = document.querySelectorAll('.payment-option');
+    const btnWhatsApp = document.getElementById('btnWhatsApp');
+    const parcelamentoSection = document.getElementById('parcelamentoSection');
+    const paypalContainer = document.getElementById('paypal-button-container');
+
+    paymentOptions.forEach(option => {
+        option.addEventListener('click', function () {
+            paymentOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+            
+            const method = this.querySelector('input').value;
+            if (method === 'paypal') {
+                btnWhatsApp.style.display = 'none';
+                parcelamentoSection.classList.remove('hidden');
+                paypalContainer.style.display = 'block';
+            } else {
+                btnWhatsApp.style.display = 'inline-flex';
+                parcelamentoSection.classList.add('hidden');
+                paypalContainer.style.display = 'none';
+            }
+        });
+    });
+
+    // ========================================
+    // BOTÃO WHATSAPP
+    // ========================================
+    btnWhatsApp.addEventListener('click', function () {
+        if (!validarFormulario()) return;
+
+        const nome = document.getElementById('nome').value;
+        const mensagem = encodeURIComponent(
+            `Olá! Gostaria de finalizar a compra do produto *${produtoInfo.nome}*.\n\n` +
+            `*Dados do Cliente:*\n` +
+            `Nome: ${nome}\n` +
+            `CPF: ${document.getElementById('cpf').value}\n` +
+            `Telefone: ${document.getElementById('telefone').value}\n` +
+            `E-mail: ${document.getElementById('email').value}\n\n` +
+            `*Endereço:*\n` +
+            `${document.getElementById('endereco').value}\n` +
+            `${document.getElementById('bairro').value} - ${document.getElementById('cidade').value}/${document.getElementById('estado').value}\n` +
+            `CEP: ${document.getElementById('cep').value}\n\n` +
+            `*Valor:* ${formatarMoeda(valorProduto)}`
+        );
+
+        window.open(`https://wa.me/5511956970564?text=${mensagem}`, '_blank');
+    });
 
     // ========================================
     // GERAR OPÇÕES DE PARCELAMENTO
@@ -118,7 +280,11 @@ document.addEventListener('DOMContentLoaded', function () {
             label.addEventListener('click', function() {
                 document.querySelectorAll('.parcelamento-option').forEach(opt => opt.classList.remove('active'));
                 this.classList.add('active');
+                parcelasSelecionadas = opcao.parcelas;
                 atualizarTotal(opcao.parcelas);
+                
+                // Recriar botões do PayPal com novo valor
+                inicializarPayPal();
             });
         });
     }
@@ -138,146 +304,6 @@ document.addEventListener('DOMContentLoaded', function () {
             totalElement.textContent = formatarMoeda(valorParcela);
             parcelasElement.textContent = `${parcelas}x de ${formatarMoeda(valorParcela)} sem juros`;
         }
-    }
-
-    // ========================================
-    // MÁSCARAS DE INPUT
-    // ========================================
-    const cpfInput = document.getElementById('cpf');
-    const telefoneInput = document.getElementById('telefone');
-    const cepInput = document.getElementById('cep');
-
-    cpfInput.addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 11) value = value.slice(0, 11);
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-        e.target.value = value;
-    });
-
-    telefoneInput.addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 11) value = value.slice(0, 11);
-        value = value.replace(/(\d{2})(\d)/, '($1) $2');
-        value = value.replace(/(\d{5})(\d)/, '$1-$2');
-        e.target.value = value;
-    });
-
-    cepInput.addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 8) value = value.slice(0, 8);
-        value = value.replace(/(\d{5})(\d)/, '$1-$2');
-        e.target.value = value;
-    });
-
-    // ========================================
-    // SELEÇÃO DE MÉTODO DE PAGAMENTO
-    // ========================================
-    const paymentOptions = document.querySelectorAll('.payment-option');
-    const btnPagar = document.getElementById('btnPagar');
-    const btnWhatsApp = document.getElementById('btnWhatsApp');
-    const parcelamentoSection = document.getElementById('parcelamentoSection');
-
-    paymentOptions.forEach(option => {
-        option.addEventListener('click', function () {
-            paymentOptions.forEach(opt => opt.classList.remove('active'));
-            this.classList.add('active');
-            
-            const method = this.querySelector('input').value;
-            if (method === 'stripe') {
-                btnPagar.style.display = 'inline-flex';
-                btnWhatsApp.style.display = 'none';
-                parcelamentoSection.classList.remove('hidden');
-            } else {
-                btnPagar.style.display = 'none';
-                btnWhatsApp.style.display = 'inline-flex';
-                parcelamentoSection.classList.add('hidden');
-            }
-        });
-    });
-
-    // ========================================
-    // VALIDAÇÃO DO FORMULÁRIO
-    // ========================================
-    document.getElementById('checkoutForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        if (!validarFormulario()) {
-            return;
-        }
-
-        const metodoPagamento = document.querySelector('input[name="pagamento"]:checked').value;
-
-        if (metodoPagamento === 'stripe') {
-            processarStripe();
-        }
-    });
-
-    // ========================================
-    // BOTÃO WHATSAPP
-    // ========================================
-    btnWhatsApp.addEventListener('click', function () {
-        if (!validarFormulario()) return;
-
-        const nome = document.getElementById('nome').value;
-        const mensagem = encodeURIComponent(
-            `Olá! Gostaria de finalizar a compra do produto *${produtoInfo.nome}*.\n\n` +
-            `*Dados do Cliente:*\n` +
-            `Nome: ${nome}\n` +
-            `CPF: ${document.getElementById('cpf').value}\n` +
-            `Telefone: ${document.getElementById('telefone').value}\n` +
-            `E-mail: ${document.getElementById('email').value}\n\n` +
-            `*Endereço:*\n` +
-            `${document.getElementById('endereco').value}\n` +
-            `${document.getElementById('bairro').value} - ${document.getElementById('cidade').value}/${document.getElementById('estado').value}\n` +
-            `CEP: ${document.getElementById('cep').value}\n\n` +
-            `*Valor:* ${formatarMoeda(valorProduto)}`
-        );
-
-        window.open(`https://wa.me/5511956970564?text=${mensagem}`, '_blank');
-    });
-
-    // ========================================
-    // PROCESSAMENTO STRIPE (MODO TESTE)
-    // ========================================
-    function processarStripe() {
-        // MODO TESTE - Simula checkout sem backend
-        // Para produção, você precisa de um backend para criar a sessão
-
-        const nome = document.getElementById('nome').value;
-        const email = document.getElementById('email').value;
-
-        // Simular processamento
-        btnPagar.disabled = true;
-        btnPagar.innerHTML = '⏳ Processando...';
-
-        setTimeout(() => {
-            // Em produção, aqui você redirecionaria para o Stripe
-            // Por enquanto, mostra mensagem de sucesso
-
-            const mensagem = encodeURIComponent(
-                `Olá! Finalizei a compra do produto *${produtoInfo.nome}* via cartão de crédito.\n\n` +
-                `*Dados do Cliente:*\n` +
-                `Nome: ${nome}\n` +
-                `E-mail: ${email}\n` +
-                `CPF: ${document.getElementById('cpf').value}\n` +
-                `Telefone: ${document.getElementById('telefone').value}\n\n` +
-                `*Endereço de Entrega:*\n` +
-                `${document.getElementById('endereco').value}\n` +
-                `${document.getElementById('bairro').value} - ${document.getElementById('cidade').value}/${document.getElementById('estado').value}\n` +
-                `CEP: ${document.getElementById('cep').value}\n\n` +
-                `*Valor Total:* ${formatarMoeda(valorProduto)}\n\n` +
-                `Aguardo confirmação do pagamento.`
-            );
-
-            // Redirecionar para WhatsApp com dados do pedido
-            window.open(`https://wa.me/5511956970564?text=${mensagem}`, '_blank');
-
-            btnPagar.disabled = false;
-            btnPagar.innerHTML = '💳 Pagar com Cartão';
-
-        }, 2000);
     }
 
     // ========================================
