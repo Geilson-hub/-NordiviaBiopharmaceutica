@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalhes do produto - Nordivia Biopharmaceuticals">
+    <title>Detalhes do Produto | Nordivia Biopharmaceuticals</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <img src="./logo2.jpg" alt="Logo Norvidia">
+                    Norvidia
+                </a>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO PRODUTOS -->
+    <section class="hero-produtos">
+        <div class="hero-background">
+            <img src="./img/hero.png" alt="Nordivia Biopharmaceuticals" class="hero-bg-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-produtos-content">
+                <a href="produtos.html" class="btn btn-voltar">← Voltar para Produtos</a>
+                <h1 id="produto-titulo">Carregando...</h1>
+                <p id="produto-subtitulo"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETALHES DO PRODUTO -->
+    <section class="detalhes-section">
+        <div class="container">
+            <div class="detalhes-grid">
+                <div class="detalhes-imagem">
+                    <img id="produto-imagem" src="" alt="">
+                </div>
+                <div class="detalhes-info">
+                    <h2 id="produto-nome"></h2>
+                    <p class="detalhes-categoria" id="produto-categoria"></p>
+                    
+                    <div class="detalhes-descricao">
+                        <h3>Descrição</h3>
+                        <p id="produto-descricao"></p>
+                    </div>
+
+                    <div class="detalhes-especificacoes">
+                        <h3>Especificações</h3>
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Categoria</span>
+                                <span class="spec-value" id="spec-categoria"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Dosagem</span>
+                                <span class="spec-value" id="spec-dosagem"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Forma de Apresentação</span>
+                                <span class="spec-value" id="spec-forma"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Armazenamento</span>
+                                <span class="spec-value" id="spec-armazenamento"></span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Prazo de Validade</span>
+                                <span class="spec-value" id="spec-validade"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detalhes-botoes">
+                        <a href="#" id="btn-comprar" class="btn btn-comprar" target="_blank">Comprar Agora</a>
+                        <a href="produtos.html" class="btn btn-detalhes">Ver Outros Produtos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="./logo2.jpg" alt="Logo Norvidia">
+                    <span>Norvidia</span>
+                </div>
+                <p class="footer-text">© 2024 Norvidia Biopharmaceuticals. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="produtos-data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const produtoId = urlParams.get('id');
+            
+            if (produtoId) {
+                const produto = produtos.find(p => p.id === produtoId);
+                
+                if (produto) {
+                    document.title = `${produto.nome} | Nordivia Biopharmaceuticals`;
+                    document.getElementById('produto-titulo').textContent = produto.nome;
+                    document.getElementById('produto-subtitulo').textContent = produto.categoria;
+                    document.getElementById('produto-imagem').src = produto.imagem;
+                    document.getElementById('produto-imagem').alt = produto.nome;
+                    document.getElementById('produto-nome').textContent = produto.nome;
+                    document.getElementById('produto-categoria').textContent = produto.categoria;
+                    document.getElementById('produto-descricao').textContent = produto.descricaoCompleta;
+                    
+                    document.getElementById('spec-categoria').textContent = produto.categoria;
+                    document.getElementById('spec-dosagem').textContent = produto.dosagem;
+                    document.getElementById('spec-forma').textContent = produto.formaApresentacao;
+                    document.getElementById('spec-armazenamento').textContent = produto.armazenamento;
+                    document.getElementById('spec-validade').textContent = produto.prazoValidade;
+                    
+                    document.getElementById('btn-comprar').href = `https://wa.me/5511956970564?text=Olá! Gostaria de comprar o produto ${produto.nome}.`;
+                } else {
+                    document.getElementById('produto-titulo').textContent = 'Produto não encontrado';
+                }
+            } else {
+                document.getElementById('produto-titulo').textContent = 'Produto não especificado';
+            }
+        });
+    </script>
+</body>
+
+</html>

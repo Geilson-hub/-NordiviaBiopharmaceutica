@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finalizar compra - Nordivia Biopharmaceuticals">
+    <title>Finalizar Compra | Nordivia Biopharmaceuticals</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <img src="./logo2.jpg" alt="Logo Norvidia">
+                    Norvidia
+                </a>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO CHECKOUT -->
+    <section class="hero-produtos">
+        <div class="hero-background">
+            <img src="./img/hero.png" alt="Nordivia Biopharmaceuticals" class="hero-bg-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-produtos-content">
+                <a href="javascript:history.back()" class="btn btn-voltar">← Voltar</a>
+                <h1>Finalizar Compra</h1>
+                <p>Preencha seus dados para concluir o pedido</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHECKOUT -->
+    <section class="checkout-section">
+        <div class="container">
+            <div class="checkout-grid">
+                <!-- Formulário de Dados -->
+                <div class="checkout-form">
+                    <h2>Seus Dados</h2>
+                    <form id="checkoutForm">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo *</label>
+                            <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">E-mail *</label>
+                                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone *</label>
+                                <input type="tel" id="telefone" name="telefone" required placeholder="(11) 99999-9999">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpf">CPF *</label>
+                            <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endereco">Endereço Completo *</label>
+                            <input type="text" id="endereco" name="endereco" required placeholder="Rua, número, complemento">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bairro">Bairro *</label>
+                                <input type="text" id="bairro" name="bairro" required placeholder="Seu bairro">
+                            </div>
+                            <div class="form-group">
+                                <label for="cidade">Cidade *</label>
+                                <input type="text" id="cidade" name="cidade" required placeholder="Sua cidade">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="estado">Estado *</label>
+                                <select id="estado" name="estado" required>
+                                    <option value="">Selecione</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cep">CEP *</label>
+                                <input type="text" id="cep" name="cep" required placeholder="00000-000">
+                            </div>
+                        </div>
+
+                        <h2 class="form-title">Forma de Pagamento</h2>
+
+                        <div class="payment-methods">
+                            <label class="payment-option active">
+                                <input type="radio" name="pagamento" value="stripe" checked>
+                                <div class="payment-card">
+                                    <span class="payment-icon">💳</span>
+                                    <span class="payment-name">Cartão de Crédito</span>
+                                    <span class="payment-desc">Parcele em até 6x sem juros</span>
+                                </div>
+                            </label>
+
+                            <label class="payment-option">
+                                <input type="radio" name="pagamento" value="whatsapp">
+                                <div class="payment-card">
+                                    <span class="payment-icon">📱</span>
+                                    <span class="payment-name">WhatsApp</span>
+                                    <span class="payment-desc">Combine pagamento direto</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Parcelamento -->
+                        <div class="parcelamento-section" id="parcelamentoSection">
+                            <label class="parcelamento-label">Escolha o parcelamento:</label>
+                            <div class="parcelamento-options" id="parcelamentoOptions">
+                                <!-- Opções serão preenchidas via JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="checkout-buttons">
+                            <button type="submit" class="btn btn-pagar" id="btnPagar">
+                                💳 Pagar com Cartão
+                            </button>
+                            <button type="button" class="btn btn-whatsapp-checkout" id="btnWhatsApp" style="display:none;">
+                                📱 Combinar via WhatsApp
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Resumo do Pedido -->
+                <div class="checkout-resumo">
+                    <h2>Resumo do Pedido</h2>
+                    <div class="resumo-produto">
+                        <img id="resumo-imagem" src="" alt="">
+                        <div class="resumo-info">
+                            <h3 id="resumo-nome"></h3>
+                            <p id="resumo-categoria"></p>
+                        </div>
+                    </div>
+                    <div class="resumo-valores">
+                        <div class="resumo-linha">
+                            <span>Produto</span>
+                            <span id="resumo-valor">R$ 0,00</span>
+                        </div>
+                        <div class="resumo-linha">
+                            <span>Frete</span>
+                            <span class="frete-gratis">Grátis</span>
+                        </div>
+                        <div class="resumo-linha total">
+                            <span>Total</span>
+                            <span id="resumo-total">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <div class="resumo-parcelas">
+                        <p id="resumo-parcelas"></p>
+                    </div>
+                    <div class="resumo-seguranca">
+                        <p>🔒 Compra 100% segura</p>
+                        <p>📦 Entrega em todo Brasil</p>
+                        <p>↩️ Garantia de 30 dias</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="./logo2.jpg" alt="Logo Norvidia">
+                    <span>Norvidia</span>
+                </div>
+                <p class="footer-text">© 2024 Norvidia Biopharmaceuticals. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="produtos-data.js"></script>
+    <script src="script.js"></script>
+    <script src="checkout.js"></script>
+</body>
+
+</html>
