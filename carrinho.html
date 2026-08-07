@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seu carrinho de compras - Nordivia Biopharmaceuticals">
+    <title>Meu Carrinho | Nordivia Biopharmaceuticals</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <img src="./logo2.jpg" alt="Logo Norvidia">
+                    Norvidia
+                </a>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="carrinho.html" class="cart-link" aria-label="Carrinho de compras">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </a>
+                    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CARRINHO -->
+    <section class="carrinho-section">
+        <div class="container">
+            <h1>Meu Carrinho</h1>
+            <p class="carrinho-subtitulo">Selecione os produtos que deseja pagar e finalize sua compra.</p>
+
+            <div id="carrinhoVazio" class="carrinho-vazio" style="display: none;">
+                <div class="carrinho-vazio-icon">🛒</div>
+                <h2>Seu carrinho está vazio</h2>
+                <p>Adicione produtos para começar sua compra.</p>
+                <a href="produtos.html" class="btn btn-primary">Ver Produtos</a>
+            </div>
+
+            <div id="carrinhoConteudo" class="carrinho-layout">
+                <div class="carrinho-lista">
+                    <div class="carrinho-toolbar">
+                        <label class="carrinho-selecionar-todos">
+                            <input type="checkbox" id="selecionarTodos" checked>
+                            Selecionar todos
+                        </label>
+                        <a href="produtos.html" class="btn btn-detalhes">+ Adicionar mais produtos</a>
+                    </div>
+                    <div id="carrinhoItems"></div>
+                </div>
+
+                <aside class="carrinho-resumo">
+                    <h2>Resumo</h2>
+                    <div class="carrinho-selecionados-info" id="carrinhoSelecionadosInfo">0 itens selecionados</div>
+                    <div class="resumo-valores">
+                        <div class="resumo-linha">
+                            <span>Total selecionado</span>
+                            <span id="carrinhoTotal">R$ 0,00</span>
+                        </div>
+                        <div class="resumo-linha">
+                            <span>Frete</span>
+                            <span class="frete-gratis">Grátis</span>
+                        </div>
+                        <div class="resumo-linha total">
+                            <span>Total</span>
+                            <span id="carrinhoTotalFinal">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-comprar btn-carrinho-pagar" id="btnIrPagamento" disabled>
+                        Ir para Pagamento
+                    </button>
+                    <p class="resumo-seguranca" style="margin-top: 15px;">
+                        🔒 Compra 100% segura · 📦 Entrega em todo Brasil
+                    </p>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="./logo2.jpg" alt="Logo Norvidia">
+                    <span>Norvidia</span>
+                </div>
+                <p class="footer-text">© 2024 Norvidia Biopharmaceuticals. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="produtos-data.js"></script>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+    <script src="carrinho.js"></script>
+</body>
+
+</html>

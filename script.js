@@ -126,12 +126,14 @@ document.addEventListener('DOMContentLoaded', function () {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
     }, observerOptions);
 
     const animateElements = document.querySelectorAll(
-        '.servico-card, .destaque-card, .beneficio-card, .depoimento-card, .faq-item, .feature'
+        '.servico-card, .beneficio-card, .depoimento-card, .faq-item, .feature'
     );
 
     animateElements.forEach(el => {
@@ -140,19 +142,6 @@ document.addEventListener('DOMContentLoaded', function () {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
-
-    document.addEventListener('scroll', function () {
-        animateElements.forEach(el => {
-            if (el.classList.contains('in-view')) {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }
-        });
-    });
-
-    setTimeout(() => {
-        window.dispatchEvent(new Event('scroll'));
-    }, 100);
 
     /* =====================================================
        6. LINK WHATSAPP COM MENSAGEM PADRÃO
