@@ -339,7 +339,6 @@ p {
     display: flex;
     flex-direction: column;
     max-width: 650px;
-    left: -270px;
 }
 
 /* Textos do hero ficam brancos sobre o overlay */
@@ -975,10 +974,35 @@ section {
         min-height: auto;
     }
 
+    .hero .container {
+        max-width: 100%;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
     .hero-stats {
         flex-direction: column;
         gap: 25px;
         align-items: center;
+        border-top: none;
+        padding-top: 20px;
+    }
+
+    .stat {
+        text-align: center;
     }
 
     section {
