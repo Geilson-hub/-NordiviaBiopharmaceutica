@@ -10,8 +10,7 @@
  * FUNCIONALIDADES:
  * - Menu mobile (hambúrguer)
  * - Scroll suave para âncoras
- * - Acordeão do FAQ
- * - Animações de scroll
+ * - Efeito de scroll no header
  * - Integração com WhatsApp
  *
  * ===================================================== */
@@ -76,30 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* =====================================================
-       3. FAQ ACORDEÃO
-       ===================================================== */
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-
-        question.addEventListener('click', function () {
-            const isActive = item.classList.contains('active');
-
-            // Fecha todos
-            faqItems.forEach(otherItem => {
-                otherItem.classList.remove('active');
-            });
-
-            // Abre o clicado (se não estava aberto)
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        });
-    });
-
-    /* =====================================================
-       4. HEADER SCROLL EFFECT
+        3. HEADER SCROLL EFFECT
        ===================================================== */
     const header = document.getElementById('header');
 
@@ -114,37 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* =====================================================
-       5. ANIMAÇÕES DE ENTRADA (SCROLL)
-       ===================================================== */
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    const animateElements = document.querySelectorAll(
-        '.servico-card, .beneficio-card, .depoimento-card, .faq-item, .feature'
-    );
-
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-
-    /* =====================================================
-       6. LINK WHATSAPP COM MENSAGEM PADRÃO
+        4. LINK WHATSAPP COM MENSAGEM PADRÃO
        EDITÁVEL: Altere a mensagem abaixo
        ===================================================== */
     const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');

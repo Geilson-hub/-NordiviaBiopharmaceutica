@@ -29,10 +29,6 @@
     /* Azul principal */
     --primary-dark: #0096c7;
     /* Azul escuro */
-    --secondary: #48cae4;
-    /* Azul claro */
-    --accent: #90e0ef;
-    /* Azul bem claro */
 
     /* Cores de fundo - TEMA ESCURO */
     --bg: #0a1929;
@@ -310,54 +306,14 @@ p {
     object-fit: cover;
 }
 
-/* Overlay com gradiente escuro */
+/* Overlay removido - foto do banner sem efeito */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, rgba(10, 25, 41, 0.95) 0%, rgba(10, 25, 41, 0.85) 50%, rgba(10, 25, 41, 0.4) 100%);
-}
-
-/* Container precisa estar acima do overlay */
-.hero .container {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    max-width: 650px;
-}
-
-/* Textos do hero ficam brancos sobre o overlay */
-.hero h1 {
-    color: #fff;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 15px;
-}
-
-.hero-subtitle {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    color: var(--primary);
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.hero-description {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 35px;
-    max-width: 550px;
-    line-height: 1.7;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
+    background: transparent;
 }
 
 /* ========== 7. SEÇÕES GERAIS ========== */
@@ -383,8 +339,15 @@ section {
 .sobre-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 50px;
     align-items: center;
+}
+
+/* Coluna das fotos empilhadas */
+.sobre-images {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 /* Imagem da equipe/clínica */
@@ -392,6 +355,7 @@ section {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .sobre-image img {
@@ -408,314 +372,15 @@ section {
 .sobre-text p {
     font-size: 1.1rem;
     line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 1.5rem;
 }
 
-.sobre-features {
-    display: grid;
-    gap: 30px;
+.sobre-text p:last-child {
+    margin-bottom: 0;
 }
 
-.feature {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    flex-shrink: 0;
-}
-
-.feature h3 {
-    color: var(--text);
-    margin-bottom: 5px;
-}
-
-.feature p {
-    margin: 0;
-    font-size: 0.95rem;
-}
-
-/* ========== 9. SEÇÃO SERVIÇOS ========== */
-.servicos {
-    background: var(--bg-alt);
-}
-
-.servicos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.servico-card {
-    background: var(--bg-alt);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    overflow: hidden;
-}
-
-.servico-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-/* Imagem do serviço */
-.servico-image {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-}
-
-.servico-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.3s ease;
-}
-
-.servico-card:hover .servico-image img {
-    transform: scale(1.1);
-}
-
-/* Conteúdo do card */
-.servico-content {
-    padding: 25px;
-    text-align: center;
-}
-
-.servico-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.servico-card h3 {
-    color: var(--text);
-    margin-bottom: 15px;
-}
-
-.servico-card p {
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-}
-
-/* ========== 12. SEÇÃO BENEFÍCIOS ========== */
-.beneficios {
-    background: var(--bg-alt);
-    color: var(--text);
-}
-
-.beneficios .section-header h2,
-.beneficios .section-header p {
-    color: var(--text);
-}
-
-.beneficios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.beneficio-card {
-    background: var(--bg);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: var(--radius);
-    text-align: center;
-    border: 1px solid rgba(0, 180, 216, 0.2);
-    transition: var(--transition);
-}
-
-.beneficio-card:hover {
-    background: var(--bg-alt);
-    border-color: rgba(0, 180, 216, 0.4);
-    transform: translateY(-5px);
-}
-
-.beneficio-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.beneficio-card h3 {
-    color: var(--text);
-    margin-bottom: 10px;
-}
-
-.beneficio-card p {
-    color: var(--text-light);
-    margin: 0;
-    font-size: 0.95rem;
-}
-
-/* ========== 13. SEÇÃO DEPOIMENTOS ========== */
-.depoimentos {
-    background: var(--bg-alt);
-}
-
-.depoimentos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.depoimento-card {
-    background: var(--bg-alt);
-    padding: 30px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-}
-
-.depoimento-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-.depoimento-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-/* Avatar com imagem real */
-.avatar-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.avatar-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.depoimento-info h4 {
-    color: var(--text);
-    margin-bottom: 2px;
-}
-
-.depoimento-info span {
-    font-size: 0.85rem;
-    color: var(--text-light);
-}
-
-.depoimento-card p {
-    font-style: italic;
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
-
-.depoimento-stars {
-    font-size: 1rem;
-    letter-spacing: 2px;
-}
-
-/* ========== 14. SEÇÃO FAQ ========== */
-.faq {
-    background: var(--bg);
-}
-
-.faq-list {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.faq-item {
-    margin-bottom: 15px;
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.faq-question {
-    width: 100%;
-    background: var(--bg);
-    border: none;
-    padding: 20px 25px;
-    text-align: left;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text);
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: var(--transition);
-}
-
-.faq-question:hover {
-    background: var(--bg-alt);
-}
-
-.faq-icon {
-    font-size: 1.5rem;
-    font-weight: 300;
-    transition: var(--transition);
-}
-
-.faq-item.active .faq-icon {
-    transform: rotate(45deg);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    background: var(--bg-alt);
-}
-
-.faq-item.active .faq-answer {
-    max-height: 500px;
-    padding: 20px 25px;
-}
-
-.faq-answer p {
-    margin: 0;
-}
-
-/* ========== 15. SEÇÃO CONTATO ========== */
-.contato {
-    background: var(--bg-alt);
-}
-
-.contato-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-}
-
-.contato-info {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.info-item {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-.info-icon {
-    font-size: 2rem;
-    flex-shrink: 0;
-}
-
-.info-item h4 {
-    color: var(--text);
-    margin-bottom: 5px;
-}
-
-.info-item p {
-    margin: 0;
-}
-
-/* ========== 16. FOOTER ========== */
+/* ========== 15. FOOTER ========== */
 .footer {
     background: #05101a;
     color: var(--white);
@@ -747,58 +412,6 @@ section {
     margin-bottom: 25px;
 }
 
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 25px;
-}
-
-.footer-links a {
-    color: rgba(255, 255, 255, 0.7);
-    transition: var(--transition);
-}
-
-.footer-links a:hover {
-    color: var(--white);
-}
-
-.footer-social {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.footer-social a {
-    font-size: 1.5rem;
-    transition: var(--transition);
-}
-
-.footer-social a:hover {
-    transform: scale(1.2);
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
-    text-align: center;
-}
-
-.footer-bottom p {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 5px;
-}
-
-.footer-bottom a {
-    color: rgba(255, 255, 255, 0.5);
-    transition: var(--transition);
-}
-
-.footer-bottom a:hover {
-    color: var(--white);
-}
-
 /* ========== POLÍTICA DE PRIVACIDADE ========== */
 .privacidade {
     background: #0d1b2a;
@@ -820,26 +433,12 @@ section {
 
 /* Tablets e telas médias */
 @media (max-width: 992px) {
-    .hero .container {
-        max-width: 100%;
-        text-align: center;
-    }
-
-    .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
     .sobre-content {
         grid-template-columns: 1fr;
     }
 
-    .contato-content {
-        grid-template-columns: 1fr;
+    .sobre-text p {
+        text-align: center;
     }
 }
 
@@ -886,38 +485,8 @@ section {
         min-height: auto;
     }
 
-    .hero .container {
-        max-width: 100%;
-        align-items: center;
-        padding: 0 20px;
-    }
-
-    .hero-content {
-        text-align: center;
-    }
-
-    .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
     section {
         padding: 60px 0;
-    }
-
-    .servicos-grid,
-    .beneficios-grid,
-    .depoimentos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        gap: 15px;
     }
 }
 
@@ -934,14 +503,6 @@ section {
     .btn {
         padding: 12px 20px;
         font-size: 0.9rem;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .hero-buttons .btn {
-        width: 100%;
     }
 }
 
@@ -1559,14 +1120,6 @@ section {
     border-bottom: 2px solid var(--primary);
 }
 
-.resumo-produto {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--bg);
-}
-
 .resumo-item {
     display: flex;
     align-items: center;
@@ -1599,13 +1152,6 @@ section {
     text-align: center;
     color: var(--text-light);
     padding: 20px 0;
-}
-
-.resumo-produto img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
 }
 
 .resumo-info h3 {
