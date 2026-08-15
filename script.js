@@ -159,18 +159,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    /* =====================================================
-       7. MAPA PLACEHOLDER CLICK
-       EDITÁVEL: Altere o endereço na URL
-       ===================================================== */
-    const mapaPlaceholder = document.querySelector('.mapa-placeholder');
-
-    if (mapaPlaceholder) {
-        mapaPlaceholder.addEventListener('click', function () {
-            // EDITÁVEL: Altere o endereço aqui
-            const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=Rua+dos+Dentistas+500+Centro+São+Paulo+SP';
-            window.open(mapsUrl, '_blank');
-        });
-    }
-
 });
