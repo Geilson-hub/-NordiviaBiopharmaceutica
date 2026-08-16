@@ -628,6 +628,76 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
+    flex: 1;
+}
+
+/* Layout com sidebar de categorias */
+.produtos-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.produtos-sidebar {
+    flex: 0 0 240px;
+    background: var(--bg-alt);
+    border-radius: var(--radius);
+    padding: 25px 20px;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 110px;
+}
+
+.sidebar-titulo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(0, 180, 216, 0.3);
+}
+
+.categorias-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.categoria-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-left: 3px solid transparent;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.categoria-btn:hover {
+    color: var(--primary);
+    background: rgba(0, 180, 216, 0.08);
+}
+
+.categoria-btn.active {
+    color: var(--primary);
+    background: rgba(0, 180, 216, 0.12);
+    border-left-color: var(--primary);
+    font-weight: 700;
+}
+
+.produtos-vazio {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-light);
+    padding: 60px 0;
+    font-size: 1.1rem;
 }
 
 /* Card de produto */
@@ -689,6 +759,37 @@ section {
 
     .produtos-grid {
         grid-template-columns: 1fr;
+    }
+
+    .produtos-layout {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .produtos-sidebar {
+        flex: 0 0 auto;
+        width: 100%;
+        position: static;
+        top: auto;
+    }
+
+    .categorias-lista {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .categoria-btn {
+        width: auto;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        padding: 8px 14px;
+        white-space: nowrap;
+    }
+
+    .categoria-btn.active {
+        border-left-color: transparent;
+        border-bottom-color: var(--primary);
     }
 }
 

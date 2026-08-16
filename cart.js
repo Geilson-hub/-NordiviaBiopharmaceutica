@@ -99,16 +99,57 @@ document.addEventListener('DOMContentLoaded', function () {
     if (produtosGrid) {
         (window.PRODUTOS_PROMISE || Promise.resolve()).then(() => {
             if (Array.isArray(produtos)) {
-                renderizarProdutosGrid(produtosGrid);
+                renderizarCategoriasSidebar();
+                renderizarProdutosGrid(produtosGrid, 'Todas');
             }
         });
     }
 });
 
-function renderizarProdutosGrid(container) {
+function obterCategorias() {
+    const categorias = ['Todas'];
+    produtos.forEach(produto => {
+        const cat = produto.categoria || 'Outros';
+        if (!categorias.includes(cat)) categorias.push(cat);
+    });
+    return categorias;
+}
+
+function renderizarCategoriasSidebar() {
+    const lista = document.getElementById('categoriasLista');
+    if (!lista) return;
+
+    lista.innerHTML = '';
+    obterCategorias().forEach((categoria, index) => {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'categoria-btn' + (index === 0 ? ' active' : '');
+        btn.textContent = categoria;
+        btn.dataset.categoria = categoria;
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.categoria-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            renderizarProdutosGrid(document.getElementById('produtosGrid'), this.dataset.categoria);
+        });
+        li.appendChild(btn);
+        lista.appendChild(li);
+    });
+}
+
+function renderizarProdutosGrid(container, filtroCategoria = 'Todas') {
     container.innerHTML = '';
 
-    produtos.forEach(produto => {
+    const produtosFiltrados = filtroCategoria === 'Todas'
+        ? produtos
+        : produtos.filter(p => (p.categoria || 'Outros') === filtroCategoria);
+
+    if (produtosFiltrados.length === 0) {
+        container.innerHTML = '<p class="produtos-vazio">Nenhum produto encontrado nesta categoria.</p>';
+        return;
+    }
+
+    produtosFiltrados.forEach(produto => {
         const descricao = produto.descricaoCompleta || '';
         const descricaoCurta = descricao.length > 130
             ? descricao.slice(0, 130).trimEnd() + '...'
