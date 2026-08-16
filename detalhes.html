@@ -66,7 +66,7 @@
                 <div class="detalhes-info">
                     <h2 id="produto-nome"></h2>
                     <p class="detalhes-categoria" id="produto-categoria"></p>
-                    
+
                     <div class="detalhes-descricao">
                         <h3>Descrição</h3>
                         <p id="produto-descricao"></p>
@@ -99,7 +99,8 @@
                     </div>
 
                     <div class="detalhes-botoes">
-                        <button type="button" id="btn-adicionar-carrinho" class="btn btn-carrinho btn-adicionar-carrinho">Adicionar ao Carrinho</button>
+                        <button type="button" id="btn-adicionar-carrinho"
+                            class="btn btn-carrinho btn-adicionar-carrinho">Adicionar ao Carrinho</button>
                         <a href="javascript:void(0)" id="btn-comprar" class="btn btn-comprar">Comprar Agora</a>
                         <a href="produtos.html" class="btn btn-detalhes">Ver Outros Produtos</a>
                     </div>
@@ -107,6 +108,12 @@
             </div>
         </div>
     </section>
+
+    <!-- LIGHTBOX ZOOM -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button type="button" class="lightbox-close" id="lightbox-fechar" aria-label="Fechar imagem">×</button>
+        <img src="" alt="" class="lightbox-img" id="lightbox-imagem">
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -116,7 +123,7 @@
                     <img src="./logo2.jpg" alt="Logo Norvidia">
                     <span>Norvidia</span>
                 </div>
-                <p class="footer-text">© 2024 Norvidia Biopharmaceuticals. Todos os direitos reservados.</p>
+                <p class="footer-text">© 2008 Norvidia Biopharmaceuticals. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -125,40 +132,75 @@
     <script src="cart.js"></script>
     <script src="script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const produtoId = urlParams.get('id');
-            const btnAdicionar = document.getElementById('btn-adicionar-carrinho');
-            
-            if (produtoId) {
-                const produto = produtos.find(p => p.id === produtoId);
-                
-                if (produto) {
-                    document.title = `${produto.nome} | Nordivia Biopharmaceuticals`;
-                    document.getElementById('produto-titulo').textContent = produto.nome;
-                    document.getElementById('produto-subtitulo').textContent = produto.categoria;
-                    document.getElementById('produto-imagem').src = produto.imagem;
-                    document.getElementById('produto-imagem').alt = produto.nome;
-                    document.getElementById('produto-nome').textContent = produto.nome;
-                    document.getElementById('produto-categoria').textContent = produto.categoria;
-                    document.getElementById('produto-descricao').textContent = produto.descricaoCompleta;
-                    
-                    document.getElementById('spec-categoria').textContent = produto.categoria;
-                    document.getElementById('spec-dosagem').textContent = produto.dosagem;
-                    document.getElementById('spec-forma').textContent = produto.formaApresentacao;
-                    document.getElementById('spec-armazenamento').textContent = produto.armazenamento;
-                    document.getElementById('spec-validade').textContent = produto.prazoValidade;
-                    
-                    document.getElementById('btn-comprar').href = `checkout.html?id=${produto.id}`;
-                    btnAdicionar.setAttribute('data-id', produto.id);
+        document.addEventListener('DOMContentLoaded', function () {
+            (window.PRODUTOS_PROMISE || Promise.resolve()).then(function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const produtoId = urlParams.get('id');
+                const btnAdicionar = document.getElementById('btn-adicionar-carrinho');
+
+                if (produtoId) {
+                    const produto = produtos.find(p => p.id === produtoId);
+
+                    if (produto) {
+                        document.title = `${produto.nome} | Nordivia Biopharmaceuticals`;
+                        document.getElementById('produto-titulo').textContent = produto.nome;
+                        document.getElementById('produto-subtitulo').textContent = produto.categoria;
+                        document.getElementById('produto-imagem').src = produto.imagem;
+                        document.getElementById('produto-imagem').alt = produto.nome;
+                        document.getElementById('produto-nome').textContent = produto.nome;
+                        document.getElementById('produto-categoria').textContent = produto.categoria;
+                        document.getElementById('produto-descricao').textContent = produto.descricaoCompleta;
+
+                        document.getElementById('spec-categoria').textContent = produto.categoria;
+                        document.getElementById('spec-dosagem').textContent = produto.dosagem;
+                        document.getElementById('spec-forma').textContent = produto.formaApresentacao;
+                        document.getElementById('spec-armazenamento').textContent = produto.armazenamento;
+                        document.getElementById('spec-validade').textContent = produto.prazoValidade;
+
+                        document.getElementById('btn-comprar').href = `checkout.html?id=${produto.id}`;
+                        btnAdicionar.setAttribute('data-id', produto.id);
+                    } else {
+                        document.getElementById('produto-titulo').textContent = 'Produto não encontrado';
+                        btnAdicionar.style.display = 'none';
+                    }
                 } else {
-                    document.getElementById('produto-titulo').textContent = 'Produto não encontrado';
+                    document.getElementById('produto-titulo').textContent = 'Produto não especificado';
                     btnAdicionar.style.display = 'none';
                 }
-            } else {
-                document.getElementById('produto-titulo').textContent = 'Produto não especificado';
-                btnAdicionar.style.display = 'none';
-            }
+
+                const imagem = document.getElementById('produto-imagem');
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-imagem');
+                const lightboxFechar = document.getElementById('lightbox-fechar');
+
+                function abrirZoom() {
+                    if (!imagem.src) return;
+                    lightboxImg.src = imagem.src;
+                    lightboxImg.alt = imagem.alt;
+                    lightbox.classList.add('open');
+                    lightbox.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function fecharZoom() {
+                    lightbox.classList.remove('open');
+                    lightbox.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                }
+
+                imagem.addEventListener('click', abrirZoom);
+                lightboxFechar.addEventListener('click', fecharZoom);
+                lightbox.addEventListener('click', function (e) {
+                    if (e.target === lightbox) {
+                        fecharZoom();
+                    }
+                });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        fecharZoom();
+                    }
+                });
+            });
         });
     </script>
 </body>

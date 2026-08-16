@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Painel Admin | Nordivia Biopharmaceuticals</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body class="admin-body">
+
+    <!-- TELA DE LOGIN -->
+    <div class="admin-login" id="adminLogin">
+        <div class="admin-login-card">
+            <div class="admin-login-logo">
+                <img src="./logo2.jpg" alt="Logo Norvidia">
+            </div>
+            <h1>Painel do Administrador</h1>
+            <p>Entre para gerenciar os produtos</p>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="adminUsuario">Usuário</label>
+                    <input type="text" id="adminUsuario" name="adminUsuario" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminSenha">Senha</label>
+                    <input type="password" id="adminSenha" name="adminSenha" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-admin-login">Entrar</button>
+            </form>
+            <p class="admin-login-erro" id="adminLoginErro"></p>
+            <a href="index.html" class="admin-voltar-site">← Voltar ao site</a>
+        </div>
+    </div>
+
+    <!-- PAINEL -->
+    <div class="admin-painel" id="adminPainel" style="display: none;">
+        <header class="admin-header">
+            <div class="admin-header-inner">
+                <h1>Painel do Administrador</h1>
+                <div class="admin-header-acoes">
+                    <a href="produtos.html" class="btn btn-detalhes" target="_blank">Ver Site</a>
+                    <button type="button" class="btn btn-carrinho" id="btnAdminLogout">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="container">
+                <div class="admin-toolbar">
+                    <h2>Produtos</h2>
+                    <button type="button" class="btn btn-primary" id="btnAdminNovoProduto">+ Adicionar Produto</button>
+                </div>
+
+                <div class="admin-produtos-table-wrap">
+                    <table class="admin-produtos-table">
+                        <thead>
+                            <tr>
+                                <th>Imagem</th>
+                                <th>Nome</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminProdutosBody">
+                            <!-- Linhas preenchidas via JavaScript -->
+                        </tbody>
+                    </table>
+                    <p class="admin-vazio" id="adminVazio" style="display: none;">Nenhum produto cadastrado.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL DE FORMULÁRIO DO PRODUTO -->
+    <div class="admin-modal" id="adminModal" style="display: none;">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3 id="adminModalTitulo">Novo Produto</h3>
+                <button type="button" class="admin-modal-fechar" id="adminModalFechar" aria-label="Fechar">×</button>
+            </div>
+            <form id="adminProdutoForm">
+                <input type="hidden" id="adminProdutoId">
+
+                <div class="form-group">
+                    <label for="adminProdutoNome">Nome *</label>
+                    <input type="text" id="adminProdutoNome" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="adminProdutoPreco">Preço (R$) *</label>
+                        <input type="number" id="adminProdutoPreco" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminProdutoCategoria">Categoria *</label>
+                        <input type="text" id="adminProdutoCategoria" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="adminProdutoDosagem">Dosagem</label>
+                        <input type="text" id="adminProdutoDosagem">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminProdutoForma">Forma de Apresentação</label>
+                        <input type="text" id="adminProdutoForma">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="adminProdutoArmazenamento">Armazenamento</label>
+                        <input type="text" id="adminProdutoArmazenamento">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminProdutoValidade">Prazo de Validade</label>
+                        <input type="text" id="adminProdutoValidade">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="adminProdutoImagem">Imagem (caminho ou URL)</label>
+                    <input type="text" id="adminProdutoImagem" placeholder="./img/meu-produto.png">
+                </div>
+
+                <div class="form-group">
+                    <label for="adminProdutoDescricao">Descrição Completa *</label>
+                    <textarea id="adminProdutoDescricao" rows="4" required></textarea>
+                </div>
+
+                <div class="admin-modal-botoes">
+                    <button type="button" class="btn btn-carrinho" id="adminModalCancelar">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="produtos-data.js"></script>
+    <script src="cart.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

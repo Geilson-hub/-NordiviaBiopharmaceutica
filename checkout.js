@@ -5,6 +5,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+    (window.PRODUTOS_PROMISE || Promise.resolve()).then(function () {
 
     // ========================================
     // DADOS DOS PRODUTOS
@@ -337,4 +338,5 @@ document.addEventListener('DOMContentLoaded', function () {
         return true;
     }
 
+    });
 });

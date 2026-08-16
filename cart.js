@@ -79,37 +79,56 @@ const Carrinho = {
 document.addEventListener('DOMContentLoaded', function () {
     Carrinho.atualizarBadge();
 
-    // Botões "Adicionar ao Carrinho" (usam data-id)
-    document.querySelectorAll('.btn-adicionar-carrinho').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const id = this.getAttribute('data-id');
-            if (!id) return;
-            Carrinho.adicionar(id);
+    // Botões "Adicionar ao Carrinho" (usam data-id) - delegação de eventos
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.btn-adicionar-carrinho');
+        if (!btn) return;
 
-            const original = this.textContent;
-            this.textContent = '✓ Adicionado';
-            setTimeout(() => { this.textContent = original; }, 1500);
-            mostrarToast('Produto adicionado ao carrinho', 'carrinho.html');
-        });
+        const id = btn.getAttribute('data-id');
+        if (!id) return;
+        Carrinho.adicionar(id);
+
+        const original = btn.textContent;
+        btn.textContent = '✓ Adicionado';
+        setTimeout(() => { btn.textContent = original; }, 1500);
+        mostrarToast('Produto adicionado ao carrinho', 'carrinho.html');
     });
 
-    // Preços nos cards da página de produtos
-    if (document.querySelector('.produto-card') && typeof produtos !== 'undefined') {
-        document.querySelectorAll('.produto-card').forEach(card => {
-            const link = card.querySelector('a[href^="detalhes.html"]');
-            if (!link) return;
-            const id = new URL(link.getAttribute('href'), window.location.href).searchParams.get('id');
-            const produto = produtos.find(p => p.id === id);
-            if (!produto) return;
-
-            const precoEl = document.createElement('p');
-            precoEl.className = 'produto-preco';
-            precoEl.textContent = formatarMoeda(produto.preco);
-            const nomeEl = card.querySelector('.produto-nome');
-            nomeEl.parentNode.insertBefore(precoEl, nomeEl.nextSibling);
+    // Renderiza o grid de produtos na página de produtos
+    const produtosGrid = document.getElementById('produtosGrid');
+    if (produtosGrid) {
+        (window.PRODUTOS_PROMISE || Promise.resolve()).then(() => {
+            if (Array.isArray(produtos)) {
+                renderizarProdutosGrid(produtosGrid);
+            }
         });
     }
 });
+
+function renderizarProdutosGrid(container) {
+    container.innerHTML = '';
+
+    produtos.forEach(produto => {
+        const descricao = produto.descricaoCompleta || '';
+        const descricaoCurta = descricao.length > 130
+            ? descricao.slice(0, 130).trimEnd() + '...'
+            : descricao;
+
+        const card = document.createElement('div');
+        card.className = 'produto-card';
+        card.innerHTML = `
+            <div class="produto-icon"><img src="${produto.imagem || './img/hero.png'}" alt="${produto.nome}" onerror="this.src='./img/hero.png'"></div>
+            <h3 class="produto-nome">${produto.nome}</h3>
+            <p class="produto-preco">${formatarMoeda(produto.preco)}</p>
+            <p class="produto-descricao"><strong>Descrição:</strong> ${descricaoCurta}</p>
+            <div class="produto-botoes">
+                <a href="detalhes.html?id=${produto.id}" class="btn btn-detalhes">Detalhes</a>
+                <button type="button" class="btn btn-carrinho btn-adicionar-carrinho" data-id="${produto.id}">Adicionar</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
 
 function formatarMoeda(valor) {
     return valor.toLocaleString('pt-BR', {

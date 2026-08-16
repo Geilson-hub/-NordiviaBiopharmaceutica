@@ -11,7 +11,7 @@
  * - Menu mobile (hambúrguer)
  * - Scroll suave para âncoras
  * - Efeito de scroll no header
- * - Integração com WhatsApp
+ * - Acesso escondido ao painel admin
  *
  * ===================================================== */
 
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    /* =====================================================
+/* =====================================================
         3. HEADER SCROLL EFFECT
        ===================================================== */
     const header = document.getElementById('header');
@@ -90,18 +90,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* =====================================================
-        4. LINK WHATSAPP COM MENSAGEM PADRÃO
-       EDITÁVEL: Altere a mensagem abaixo
+        4. ACESSO ESCONDIDO DO ADMIN
+       Clique 5x no logo do rodapé ou pressione Ctrl+Shift+A
        ===================================================== */
-    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
-    const defaultMessage = encodeURIComponent(
-        'Gostaria de saber mais sobre os produtos, por favor.'
-    );
+    let cliquesLogo = 0;
+    let ultimoCliqueLogo = 0;
 
-    whatsappLinks.forEach(link => {
-        const currentHref = link.getAttribute('href');
-        if (!currentHref.includes('text=')) {
-            link.setAttribute('href', `${currentHref}?text=${defaultMessage}`);
+    document.addEventListener('click', function (e) {
+        const logo = e.target.closest('.footer-logo');
+        if (!logo) return;
+
+        const agora = Date.now();
+        if (agora - ultimoCliqueLogo > 3000) {
+            cliquesLogo = 0;
+        }
+        ultimoCliqueLogo = agora;
+        cliquesLogo++;
+
+        if (cliquesLogo >= 5) {
+            cliquesLogo = 0;
+            window.location.href = 'admin.html';
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+            window.location.href = 'admin.html';
         }
     });
 

@@ -11,5 +11,11 @@ Thumbs.db
 # Dependencies
 node_modules/
 
+# Banco de dados local (gerado automaticamente no primeiro start)
+data/
+
+# Variáveis de ambiente locais
+.env
+
 # Logs
 *.log

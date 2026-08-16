@@ -1,0 +1,278 @@
+/* =====================================================
+   PAINEL DO ADMINISTRADOR
+   ===================================================== */
+
+.admin-body {
+    background: var(--bg);
+}
+
+/* ========== TELA DE LOGIN ========== */
+.admin-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.admin-login-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--bg-alt);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 40px 35px;
+    text-align: center;
+}
+
+.admin-login-logo img {
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.admin-login-card h1 {
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.admin-login-card > p {
+    color: var(--text-light);
+    margin-bottom: 25px;
+}
+
+.admin-login-card .form-group {
+    text-align: left;
+}
+
+.btn-admin-login {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.admin-login-erro {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    min-height: 20px;
+}
+
+.admin-voltar-site {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+/* ========== PAINEL ========== */
+.admin-painel {
+    min-height: 100vh;
+}
+
+.admin-header {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--bg);
+    padding: 20px 0;
+}
+
+.admin-header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.admin-header-inner h1 {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.admin-header-acoes {
+    display: flex;
+    gap: 12px;
+}
+
+.admin-main {
+    padding: 40px 0 80px;
+}
+
+.admin-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.admin-toolbar h2 {
+    margin: 0;
+}
+
+.admin-produtos-table-wrap {
+    background: var(--bg-alt);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+}
+
+.admin-produtos-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+.admin-produtos-table th,
+.admin-produtos-table td {
+    text-align: left;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--bg);
+    vertical-align: middle;
+}
+
+.admin-produtos-table th {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--bg);
+}
+
+.admin-produtos-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-produtos-table td {
+    color: var(--text);
+}
+
+.admin-produto-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.admin-produto-preco {
+    font-weight: 700;
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+.admin-produto-acoes {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-btn-editar,
+.admin-btn-remover {
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.admin-btn-editar {
+    background: rgba(0, 180, 216, 0.15);
+    color: var(--primary);
+}
+
+.admin-btn-editar:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.admin-btn-remover {
+    background: rgba(255, 107, 107, 0.15);
+    color: #ff6b6b;
+}
+
+.admin-btn-remover:hover {
+    background: #ff6b6b;
+    color: var(--white);
+}
+
+.admin-vazio {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+}
+
+/* ========== MODAL ========== */
+.admin-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(5, 15, 25, 0.85);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+}
+
+.admin-modal-content {
+    width: 100%;
+    max-width: 640px;
+    background: var(--bg-alt);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.admin-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.admin-modal-header h3 {
+    margin: 0;
+}
+
+.admin-modal-fechar {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.admin-modal-fechar:hover {
+    color: #ff6b6b;
+    transform: scale(1.15);
+}
+
+.admin-modal-botoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* Responsividade admin */
+@media (max-width: 768px) {
+    .admin-header-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .admin-modal-botoes {
+        flex-direction: column;
+    }
+
+    .admin-modal-botoes .btn {
+        width: 100%;
+    }
+}

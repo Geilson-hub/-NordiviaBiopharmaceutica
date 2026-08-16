@@ -1,4 +1,4 @@
-const produtos = [
+const PRODUTOS_PADRAO = [
     {
         id: "adipotide-5mg",
         preco: 450,
@@ -446,3 +446,23 @@ const produtos = [
         prazoValidade: "24 meses"
     }
 ];
+
+let produtos = [];
+
+const PRODUTOS_PROMISE = (async function carregarProdutos() {
+    try {
+        const resp = await fetch('api/produtos');
+        if (resp.ok) {
+            const lista = await resp.json();
+            if (Array.isArray(lista)) {
+                produtos = lista;
+                return;
+            }
+        }
+    } catch (e) {
+        console.error('Não foi possível carregar produtos do servidor:', e);
+    }
+    produtos = PRODUTOS_PADRAO;
+})();
+
+window.PRODUTOS_PROMISE = PRODUTOS_PROMISE;

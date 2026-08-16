@@ -5,17 +5,19 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    renderizarCarrinho();
-
-    document.getElementById('btnIrPagamento').addEventListener('click', irParaPagamento);
-
-    document.getElementById('selecionarTodos').addEventListener('change', function () {
-        const items = Carrinho.obterItems();
-        items.forEach(item => {
-            item.selecionado = this.checked;
-        });
-        Carrinho.salvarItems(items);
+    (window.PRODUTOS_PROMISE || Promise.resolve()).then(function () {
         renderizarCarrinho();
+
+        document.getElementById('btnIrPagamento').addEventListener('click', irParaPagamento);
+
+        document.getElementById('selecionarTodos').addEventListener('change', function () {
+            const items = Carrinho.obterItems();
+            items.forEach(item => {
+                item.selecionado = this.checked;
+            });
+            Carrinho.salvarItems(items);
+            renderizarCarrinho();
+        });
     });
 });
 
