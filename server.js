@@ -18,6 +18,8 @@
 const express = require('express');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
+const helmet = require('helmet');
+const cors = require('cors');
 
 dotenv.config();
 
@@ -29,8 +31,12 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_USUARIO = process.env.ADMIN_USUARIO || 'admin';
 const ADMIN_SENHA = process.env.ADMIN_SENHA || 'nordivia2024';
 
+const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
+
 const tokens = new Set();
 
+app.use(helmet());
+app.use(cors({ origin: CORS_ORIGIN }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
