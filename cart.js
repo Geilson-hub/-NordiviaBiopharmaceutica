@@ -172,9 +172,10 @@ function renderizarProdutosGrid(container, filtroCategoria = 'Todas') {
 }
 
 function formatarMoeda(valor) {
-    return valor.toLocaleString('pt-BR', {
+    if (!valor || valor === 0) return '';
+    return valor.toLocaleString('en-US', {
         style: 'currency',
-        currency: 'BRL'
+        currency: 'USD'
     });
 }
 

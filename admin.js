@@ -106,9 +106,10 @@ document.addEventListener('DOMContentLoaded', function () {
     btnLogout.addEventListener('click', sair);
 
     function formatarMoeda(valor) {
-        return Number(valor || 0).toLocaleString('pt-BR', {
+        if (!valor || valor === 0) return '';
+        return Number(valor || 0).toLocaleString('en-US', {
             style: 'currency',
-            currency: 'BRL'
+            currency: 'USD'
         });
     }
 

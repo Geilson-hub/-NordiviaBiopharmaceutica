@@ -105,11 +105,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     purchase_units: [{
                         description: `Nordivia Order (${itens.length} ${itens.length === 1 ? 'item' : 'items'})`,
                         amount: {
-                            currency_code: 'BRL',
+                            currency_code: 'USD',
                             value: total.toFixed(2),
                             breakdown: {
                                 item_total: {
-                                    currency_code: 'BRL',
+                                    currency_code: 'USD',
                                     value: total.toFixed(2)
                                 }
                             }
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         items: itens.map(i => ({
                             name: i.nome,
                             unit_amount: {
-                                currency_code: 'BRL',
+                                currency_code: 'USD',
                                 value: i.valor.toFixed(2)
                             },
                             quantity: String(i.quantidade)
@@ -303,9 +303,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // HELPER FUNCTIONS
     // ========================================
     function formatarMoeda(valor) {
-        return valor.toLocaleString('pt-BR', {
+        if (!valor || valor === 0) return '';
+        return valor.toLocaleString('en-US', {
             style: 'currency',
-            currency: 'BRL'
+            currency: 'USD'
         });
     }
 
