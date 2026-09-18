@@ -1,8 +1,8 @@
 /**
  * =====================================================
- * CARRINHO - Lógica compartilhada
- * Utilizada nas páginas: index, produtos, detalhes,
- * carrinho e checkout.
+ * CART - Shared logic
+ * Used on pages: index, products, details,
+ * cart and checkout.
  * =====================================================
  */
 
@@ -79,7 +79,7 @@ const Carrinho = {
 document.addEventListener('DOMContentLoaded', function () {
     Carrinho.atualizarBadge();
 
-    // Botões "Adicionar ao Carrinho" (usam data-id) - delegação de eventos
+    // "Add to Cart" buttons (use data-id) - event delegation
     document.addEventListener('click', function (e) {
         const btn = e.target.closest('.btn-adicionar-carrinho');
         if (!btn) return;
@@ -89,12 +89,12 @@ document.addEventListener('DOMContentLoaded', function () {
         Carrinho.adicionar(id);
 
         const original = btn.textContent;
-        btn.textContent = '✓ Adicionado';
+        btn.textContent = '✓ Added';
         setTimeout(() => { btn.textContent = original; }, 1500);
-        mostrarToast('Produto adicionado ao carrinho', 'carrinho.html');
+        mostrarToast('Product added to cart', 'carrinho.html');
     });
 
-    // Renderiza o grid de produtos na página de produtos
+    // Renders the product grid on the products page
     const produtosGrid = document.getElementById('produtosGrid');
     if (produtosGrid) {
         (window.PRODUTOS_PROMISE || Promise.resolve()).then(() => {
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function obterCategorias() {
     const categorias = ['Todas'];
     produtos.forEach(produto => {
-        const cat = produto.categoria || 'Outros';
+        const cat = produto.categoria || 'Other';
         if (!categorias.includes(cat)) categorias.push(cat);
     });
     return categorias;
@@ -145,7 +145,7 @@ function renderizarProdutosGrid(container, filtroCategoria = 'Todas') {
         : produtos.filter(p => (p.categoria || 'Outros') === filtroCategoria);
 
     if (produtosFiltrados.length === 0) {
-        container.innerHTML = '<p class="produtos-vazio">Nenhum produto encontrado nesta categoria.</p>';
+        container.innerHTML = '<p class="produtos-vazio">No products found in this category.</p>';
         return;
     }
 
@@ -161,10 +161,10 @@ function renderizarProdutosGrid(container, filtroCategoria = 'Todas') {
             <div class="produto-icon"><img src="${produto.imagem || './img/hero.png'}" alt="${produto.nome}" onerror="this.src='./img/hero.png'"></div>
             <h3 class="produto-nome">${produto.nome}</h3>
             <p class="produto-preco">${formatarMoeda(produto.preco)}</p>
-            <p class="produto-descricao"><strong>Descrição:</strong> ${descricaoCurta}</p>
+            <p class="produto-descricao"><strong>Description:</strong> ${descricaoCurta}</p>
             <div class="produto-botoes">
-                <a href="detalhes.html?id=${produto.id}" class="btn btn-detalhes">Detalhes</a>
-                <button type="button" class="btn btn-carrinho btn-adicionar-carrinho" data-id="${produto.id}">Adicionar</button>
+                <a href="detalhes.html?id=${produto.id}" class="btn btn-detalhes">Details</a>
+                <button type="button" class="btn btn-carrinho btn-adicionar-carrinho" data-id="${produto.id}">Add</button>
             </div>
         `;
         container.appendChild(card);
@@ -187,7 +187,7 @@ function mostrarToast(mensagem, link) {
         document.body.appendChild(toast);
     }
     const linkHtml = link
-        ? `<a href="${link}" class="toast-link">Ver carrinho</a>`
+        ? `<a href="${link}" class="toast-link">View cart</a>`
         : '';
     toast.innerHTML = `<span>${mensagem}</span>${linkHtml}`;
     toast.classList.add('show');

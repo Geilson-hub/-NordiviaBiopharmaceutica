@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Detalhes do produto - Nordivia Biopharmaceuticals">
-    <title>Detalhes do Produto | Nordivia Biopharmaceuticals</title>
+    <meta name="description" content="Product details - Nordivia Biopharmaceuticals">
+    <title>Product Details | Nordivia Biopharmaceuticals</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,18 +20,18 @@
                 </a>
 
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="index.html#sobre">Sobre</a></li>
-                    <li><a href="produtos.html">Produtos</a></li>
-                    <li><a href="index.html#contato">Contato</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#sobre">About</a></li>
+                    <li><a href="produtos.html">Products</a></li>
+                    <li><a href="index.html#contato">Contact</a></li>
                 </ul>
 
                 <div class="nav-actions">
-                    <a href="carrinho.html" class="cart-link" aria-label="Carrinho de compras">
+                    <a href="carrinho.html" class="cart-link" aria-label="Shopping cart">
                         <span class="cart-icon">🛒</span>
                         <span class="cart-badge" style="display: none;">0</span>
                     </a>
-                    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+                    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -49,8 +49,8 @@
         </div>
         <div class="container">
             <div class="hero-produtos-content">
-                <a href="produtos.html" class="btn btn-voltar">← Voltar para Produtos</a>
-                <h1 id="produto-titulo">Carregando...</h1>
+                <a href="produtos.html" class="btn btn-voltar">← Back to Products</a>
+                <h1 id="produto-titulo">Loading...</h1>
                 <p id="produto-subtitulo"></p>
             </div>
         </div>
@@ -68,31 +68,31 @@
                     <p class="detalhes-categoria" id="produto-categoria"></p>
 
                     <div class="detalhes-descricao">
-                        <h3>Descrição</h3>
+                        <h3>Description</h3>
                         <p id="produto-descricao"></p>
                     </div>
 
                     <div class="detalhes-especificacoes">
-                        <h3>Especificações</h3>
+                        <h3>Specifications</h3>
                         <div class="specs-grid">
                             <div class="spec-item">
-                                <span class="spec-label">Categoria</span>
+                                <span class="spec-label">Category</span>
                                 <span class="spec-value" id="spec-categoria"></span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Dosagem</span>
+                                <span class="spec-label">Dosage</span>
                                 <span class="spec-value" id="spec-dosagem"></span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Forma de Apresentação</span>
+                                <span class="spec-label">Presentation Form</span>
                                 <span class="spec-value" id="spec-forma"></span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Armazenamento</span>
+                                <span class="spec-label">Storage</span>
                                 <span class="spec-value" id="spec-armazenamento"></span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Prazo de Validade</span>
+                                <span class="spec-label">Shelf Life</span>
                                 <span class="spec-value" id="spec-validade"></span>
                             </div>
                         </div>
@@ -100,9 +100,9 @@
 
                     <div class="detalhes-botoes">
                         <button type="button" id="btn-adicionar-carrinho"
-                            class="btn btn-carrinho btn-adicionar-carrinho">Adicionar ao Carrinho</button>
-                        <a href="javascript:void(0)" id="btn-comprar" class="btn btn-comprar">Comprar Agora</a>
-                        <a href="produtos.html" class="btn btn-detalhes">Ver Outros Produtos</a>
+                            class="btn btn-carrinho btn-adicionar-carrinho">Add to Cart</button>
+                        <a href="javascript:void(0)" id="btn-comprar" class="btn btn-comprar">Buy Now</a>
+                        <a href="produtos.html" class="btn btn-detalhes">View Other Products</a>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
 
     <!-- LIGHTBOX ZOOM -->
     <div class="lightbox" id="lightbox" aria-hidden="true">
-        <button type="button" class="lightbox-close" id="lightbox-fechar" aria-label="Fechar imagem">×</button>
+        <button type="button" class="lightbox-close" id="lightbox-fechar" aria-label="Close image">×</button>
         <img src="" alt="" class="lightbox-img" id="lightbox-imagem">
     </div>
 
@@ -123,7 +123,7 @@
                     <img src="./logo2.jpg" alt="Logo Norvidia">
                     <span>Norvidia</span>
                 </div>
-                <p class="footer-text">© 2008 Norvidia Biopharmaceuticals. Todos os direitos reservados.</p>
+                <p class="footer-text">© 2008 Norvidia Biopharmaceuticals. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -160,11 +160,11 @@
                         document.getElementById('btn-comprar').href = `checkout.html?id=${produto.id}`;
                         btnAdicionar.setAttribute('data-id', produto.id);
                     } else {
-                        document.getElementById('produto-titulo').textContent = 'Produto não encontrado';
+                        document.getElementById('produto-titulo').textContent = 'Product not found';
                         btnAdicionar.style.display = 'none';
                     }
                 } else {
-                    document.getElementById('produto-titulo').textContent = 'Produto não especificado';
+                    document.getElementById('produto-titulo').textContent = 'Product not specified';
                     btnAdicionar.style.display = 'none';
                 }
 

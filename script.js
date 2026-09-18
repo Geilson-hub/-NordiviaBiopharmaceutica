@@ -1,36 +1,36 @@
 /**
  * =====================================================
  * NORDIVIA BIOPHARMACEUTICA
- * Script Principal
+ * Main Script
  * =====================================================
  *
- * Este arquivo contém todas as funcionalidades JavaScript
- * da landing page da Nordivia Biopharmaceutica.
+ * This file contains all the JavaScript functionalities
+ * of the Nordivia Biopharmaceuticals landing page.
  *
- * FUNCIONALIDADES:
- * - Menu mobile (hambúrguer)
- * - Scroll suave para âncoras
- * - Efeito de scroll no header
- * - Acesso escondido ao painel admin
+ * FEATURES:
+ * - Mobile menu (hamburger)
+ * - Smooth scroll for anchors
+ * - Header scroll effect
+ * - Hidden admin panel access
  *
- * ===================================================== */
-
+ * =====================================================
+ */
 document.addEventListener('DOMContentLoaded', function () {
 
     /* =====================================================
-       1. MENU MOBILE (HAMBÚRGUER)
+       1. MOBILE MENU (HAMBURGER)
        ===================================================== */
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
     if (navToggle && navMenu) {
-        // Toggle do menu
+        // Toggle menu
         navToggle.addEventListener('click', function () {
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
 
-        // Fecha menu ao clicar em link
+        // Close menu when clicking a link
         const navLinks = navMenu.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function () {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // Fecha menu ao clicar fora
+        // Close menu when clicking outside
         document.addEventListener('click', function (e) {
             if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
                 navToggle.classList.remove('active');
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* =====================================================
-       2. SCROLL SUAVE
+       2. SMOOTH SCROLL
        ===================================================== */
     const links = document.querySelectorAll('a[href^="#"]');
 
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-/* =====================================================
+    /* =====================================================
         3. HEADER SCROLL EFFECT
        ===================================================== */
     const header = document.getElementById('header');
@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* =====================================================
-        4. ACESSO ESCONDIDO DO ADMIN
-       Clique 5x no logo do rodapé ou pressione Ctrl+Shift+A
+        4. HIDDEN ADMIN ACCESS
+       Click 5x on the footer logo or press Ctrl+Shift+A
        ===================================================== */
     let cliquesLogo = 0;
     let ultimoCliqueLogo = 0;

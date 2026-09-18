@@ -1,15 +1,15 @@
 /**
  * =====================================================
- * CAMADA DE DADOS - PostgreSQL ou arquivo JSON
+ * DATA LAYER - PostgreSQL or JSON file
  * =====================================================
  *
- * - Se a variável de ambiente DATABASE_URL estiver definida,
- *   usa PostgreSQL (ex.: Neon, Supabase, Render).
- * - Caso contrário, usa um arquivo local (data/produtos.json),
- *   ideal para desenvolvimento.
+ * - If the DATABASE_URL environment variable is set,
+ *   uses PostgreSQL (e.g., Neon, Supabase, Render).
+ * - Otherwise, uses a local file (data/produtos.json),
+ *   ideal for development.
  *
- * Para habilitar SSL no PostgreSQL, defina PGSSL=true
- * (necessário em hospedagens como Neon e Supabase).
+ * To enable SSL on PostgreSQL, set PGSSL=true
+ * (required on hosts like Neon and Supabase).
  * ===================================================== */
 
 const fs = require('fs');
@@ -45,7 +45,7 @@ function gerarId(nome) {
         .replace(/[\u0300-\u036f]/g, '')
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '');
-    return id || 'produto';
+    return id || 'product';
 }
 
 function montarProduto(dados) {
@@ -90,7 +90,7 @@ module.exports = async function criarDb(opcoes = {}) {
         ssl: process.env.PGSSL === 'true' ? { rejectUnauthorized: false } : undefined
     }) : null);
 
-    /* ---------- Inicialização (tabela / arquivo + seed) ---------- */
+    /* ---------- Initialization (table / file + seed) ---------- */
     if (pool) {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS produtos (
@@ -121,7 +121,7 @@ module.exports = async function criarDb(opcoes = {}) {
         salvarJson(await obterProdutosPadrao());
     }
 
-    /* ---------- Arquivo JSON ---------- */
+    /* ---------- JSON file ---------- */
     function lerJson() {
         if (!fs.existsSync(DATA_FILE)) return [];
         try {
@@ -136,7 +136,7 @@ module.exports = async function criarDb(opcoes = {}) {
         fs.writeFileSync(DATA_FILE, JSON.stringify(lista, null, 4), 'utf8');
     }
 
-    /* ---------- Operações ---------- */
+    /* ---------- Operations ---------- */
     async function listarProdutos() {
         if (pool) {
             const { rows } = await pool.query(`SELECT ${COLS} FROM produtos ORDER BY nome`);
@@ -150,7 +150,7 @@ module.exports = async function criarDb(opcoes = {}) {
 
         if (pool) {
             const existe = await pool.query('SELECT 1 FROM produtos WHERE id = $1', [novo.id]);
-            if (existe.rows.length > 0) throw erro(409, 'Já existe um produto com este id');
+            if (existe.rows.length > 0) throw erro(409, 'A product with this ID already exists');
 
             await pool.query(
                 `INSERT INTO produtos (${COLS}) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
@@ -160,7 +160,7 @@ module.exports = async function criarDb(opcoes = {}) {
         }
 
         const lista = lerJson();
-        if (lista.some(p => p.id === novo.id)) throw erro(409, 'Já existe um produto com este id');
+        if (lista.some(p => p.id === novo.id)) throw erro(409, 'A product with this ID already exists');
         lista.push(novo);
         salvarJson(lista);
         return novo;
@@ -174,13 +174,13 @@ module.exports = async function criarDb(opcoes = {}) {
                 `UPDATE produtos SET nome=$2, preco=$3, categoria=$4, dosagem=$5, forma_apresentacao=$6, armazenamento=$7, prazo_validade=$8, imagem=$9, descricao_completa=$10 WHERE id=$1`,
                 [id, valores.nome, valores.preco, valores.categoria, valores.dosagem, valores.formaApresentacao, valores.armazenamento, valores.prazoValidade, valores.imagem, valores.descricaoCompleta]
             );
-            if (res.rowCount === 0) throw erro(404, 'Produto não encontrado');
+            if (res.rowCount === 0) throw erro(404, 'Product not found');
             return valores;
         }
 
         const lista = lerJson();
         const index = lista.findIndex(p => p.id === id);
-        if (index === -1) throw erro(404, 'Produto não encontrado');
+        if (index === -1) throw erro(404, 'Product not found');
         lista[index] = valores;
         salvarJson(lista);
         return valores;
@@ -189,13 +189,13 @@ module.exports = async function criarDb(opcoes = {}) {
     async function removerProduto(id) {
         if (pool) {
             const res = await pool.query('DELETE FROM produtos WHERE id = $1', [id]);
-            if (res.rowCount === 0) throw erro(404, 'Produto não encontrado');
+            if (res.rowCount === 0) throw erro(404, 'Product not found');
             return { ok: true };
         }
 
         const lista = lerJson();
         const nova = lista.filter(p => p.id !== id);
-        if (nova.length === lista.length) throw erro(404, 'Produto não encontrado');
+        if (nova.length === lista.length) throw erro(404, 'Product not found');
         salvarJson(nova);
         return { ok: true };
     }

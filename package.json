@@ -1,9 +1,10 @@
 {
   "name": "nordivia-biopharmaceuticals",
   "version": "1.0.0",
-  "description": "Site Nordivia Biopharmaceuticals com painel admin e API",
+  "description": "Nordivia Biopharmaceuticals site with admin panel and API",
   "main": "server.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "node server.js",
     "test:db": "node test-db.js"
   },
@@ -13,6 +14,7 @@
     "pg": "^8.12.0"
   },
   "devDependencies": {
+    "nodemon": "^3.1.14",
     "pg-mem": "^2.8.0"
   }
 }

@@ -1,14 +1,14 @@
 /**
  * =====================================================
- * PAINEL DO ADMINISTRADOR - Login e gerenciamento
+ * ADMINISTRATOR PANEL - Login and management
  * =====================================================
  *
- * Acesso escondido pelo site:
- * - Clique 5x no logo/footer do site
- * - Ou pressione Ctrl+Shift+A
+ * Hidden access from the site:
+ * - Click 5x on the logo/footer
+ * - Or press Ctrl+Shift+A
  *
- * Os dados são salvos no servidor (data/produtos.json),
- * então ficam visíveis para todos os visitantes.
+ * Data is saved on the server (data/produtos.json),
+ * so it's visible to all visitors.
  * ===================================================== */
 
 const ADMIN_TOKEN_KEY = 'nordivia_admin_token';
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function tratarNaoAutorizado(res) {
         if (res.status === 401) {
             sair();
-            loginErro.textContent = 'Sessão expirada. Entre novamente.';
+            loginErro.textContent = 'Session expired. Please login again.';
         }
     }
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function atualizarProdutosLocais() {
         const res = await apiRequest('api/produtos');
-        if (!res.ok) throw new Error('Falha ao carregar produtos');
+        if (!res.ok)         throw new Error('Failed to load products');
         const lista = await res.json();
         if (Array.isArray(lista)) {
             produtos.length = 0;
@@ -96,10 +96,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 sessionStorage.setItem(ADMIN_TOKEN_KEY, dados.token);
                 mostrarPainel();
             } else {
-                loginErro.textContent = 'Usuário ou senha incorretos.';
+                loginErro.textContent = 'Invalid username or password.';
             }
         } catch (err) {
-            loginErro.textContent = 'Erro de conexão com o servidor.';
+            loginErro.textContent = 'Server connection error.';
         }
     });
 
@@ -126,8 +126,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td class="admin-produto-preco">${formatarMoeda(produto.preco)}</td>
                 <td>
                     <div class="admin-produto-acoes">
-                        <button type="button" class="admin-btn-editar" data-id="${produto.id}">Editar</button>
-                        <button type="button" class="admin-btn-remover" data-id="${produto.id}">Remover</button>
+                        <button type="button" class="admin-btn-editar" data-id="${produto.id}">Edit</button>
+                        <button type="button" class="admin-btn-remover" data-id="${produto.id}">Remove</button>
                     </div>
                 </td>
             `;
@@ -146,26 +146,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 const id = this.getAttribute('data-id');
                 const produto = produtos.find(p => p.id === id);
                 if (!produto) return;
-                if (!confirm(`Remover o produto "${produto.nome}"?`)) return;
+                if (!confirm(`Remove product "${produto.nome}"?`)) return;
 
                 try {
                     const res = await apiRequest(`api/produtos/${encodeURIComponent(id)}`, { method: 'DELETE' });
                     if (res.ok) {
                         await atualizarProdutosLocais();
                         renderizarProdutos();
-                        mostrarToast('Produto removido com sucesso');
+                        mostrarToast('Product removed successfully');
                     } else {
                         tratarNaoAutorizado(res);
                     }
                 } catch (err) {
-                    mostrarToast('Erro ao remover o produto');
+                    mostrarToast('Error removing product');
                 }
             });
         });
     }
 
     function abrirModal(produto) {
-        modalTitulo.textContent = produto ? 'Editar Produto' : 'Novo Produto';
+        modalTitulo.textContent = produto ? 'Edit Product' : 'New Product';
         document.getElementById('adminProdutoId').value = produto ? produto.id : '';
         document.getElementById('adminProdutoNome').value = produto ? produto.nome : '';
         document.getElementById('adminProdutoPreco').value = produto ? produto.preco : '';
@@ -239,14 +239,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 await atualizarProdutosLocais();
                 fecharModal();
                 renderizarProdutos();
-                mostrarToast(idExistente ? 'Produto atualizado com sucesso' : 'Produto adicionado com sucesso');
+                mostrarToast(idExistente ? 'Product updated successfully' : 'Product added successfully');
             } else if (res.status === 409) {
-                alert('Já existe um produto com este id. Tente outro nome.');
+                alert('A product with this ID already exists. Try another name.');
             } else {
                 tratarNaoAutorizado(res);
             }
         } catch (err) {
-            mostrarToast('Erro ao salvar o produto');
+            mostrarToast('Error saving product');
         }
     });
 

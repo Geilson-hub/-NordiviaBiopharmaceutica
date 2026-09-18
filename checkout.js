@@ -1,6 +1,6 @@
 /**
  * =====================================================
- * CHECKOUT - Pagamento (múltiplos itens do carrinho)
+ * CHECKOUT - Payment (multiple cart items)
  * =====================================================
  */
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     (window.PRODUTOS_PROMISE || Promise.resolve()).then(function () {
 
     // ========================================
-    // DADOS DOS PRODUTOS
+    // PRODUCT DATA
     // ========================================
     const precos = {};
     if (typeof produtos !== 'undefined') {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ========================================
-    // CAPTURAR ITENS DO PEDIDO
+    // CAPTURE ORDER ITEMS
     // ========================================
     const urlParams = new URLSearchParams(window.location.search);
     const produtoId = urlParams.get('id');
@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let origemCarrinho = false;
 
     if (produtoId && precos[produtoId]) {
-        // Compra rápida de um único produto
+        // Quick purchase of a single product
         const p = precos[produtoId];
         itens.push({ id: produtoId, quantidade: 1, ...p });
     } else {
-        // Itens selecionados no carrinho
+        // Items selected in cart
         origemCarrinho = true;
         Carrinho.obterSelecionados().forEach(item => {
             const p = precos[item.id];
@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
         inicializarPayPal(valorTotal);
     } else {
         document.getElementById('resumoItens').innerHTML =
-            '<p class="resumo-vazio">Nenhum produto selecionado para pagamento.<br><a href="carrinho.html" class="btn btn-detalhes" style="margin-top:15px;">Ver meu carrinho</a></p>';
+            '<p class="resumo-vazio">No products selected for payment.<br><a href="carrinho.html" class="btn btn-detalhes" style="margin-top:15px;">View my cart</a></p>';
     }
 
     // ========================================
-    // RENDERIZAR RESUMO
+    // RENDER SUMMARY
     // ========================================
     function renderizarResumo(itens, total) {
         const container = document.getElementById('resumoItens');
@@ -80,13 +80,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ========================================
-    // INICIALIZAR PAYPAL
+    // INITIALIZE PAYPAL
     // ========================================
     function inicializarPayPal(total) {
         const paypalContainer = document.getElementById('paypal-button-container');
 
         if (typeof paypal === 'undefined') {
-            paypalContainer.innerHTML = '<p class="paypal-erro">PayPal não configurado. Configure seu Client ID.</p>';
+            paypalContainer.innerHTML = '<p class="paypal-erro">PayPal not configured. Configure your Client ID.</p>';
             return;
         }
 
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
             createOrder: function (data, actions) {
                 return actions.order.create({
                     purchase_units: [{
-                        description: `Pedido Nordivia (${itens.length} ${itens.length === 1 ? 'item' : 'itens'})`,
+                        description: `Nordivia Order (${itens.length} ${itens.length === 1 ? 'item' : 'items'})`,
                         amount: {
                             currency_code: 'BRL',
                             value: total.toFixed(2),
@@ -131,44 +131,44 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             },
             onError: function (err) {
-                console.error('Erro no PayPal:', err);
-                alert('Erro ao processar pagamento. Tente novamente.');
+                console.error('PayPal error:', err);
+                alert('Error processing payment. Please try again.');
             },
             onCancel: function (data) {
-                alert('Pagamento cancelado.');
+                alert('Payment cancelled.');
             }
         }).render('#paypal-button-container');
     }
 
     // ========================================
-    // MOSTRAR SUCESSO
+    // SHOW SUCCESS
     // ========================================
     function mostrarSucesso(detalhes) {
-        // Remover itens pagos do carrinho
+        // Remove paid items from cart
         if (origemCarrinho) {
             Carrinho.removerVarios(itens.map(i => i.id));
         }
 
         const container = document.querySelector('.checkout-form');
         container.innerHTML = `
-            <div class="pagamento-sucesso">
+                <div class="pagamento-sucesso">
                 <div class="sucesso-icon">✅</div>
-                <h2>Pagamento Aprovado!</h2>
-                <p>Obrigado pela sua compra, <strong>${detalhes.payer.name.given_name}</strong>!</p>
-                <p>Seu pedido <strong>#${detalhes.id}</strong> foi confirmado.</p>
+                <h2>Payment Approved!</h2>
+                <p>Thank you for your purchase, <strong>${detalhes.payer.name.given_name}</strong>!</p>
+                <p>Your order <strong>#${detalhes.id}</strong> has been confirmed.</p>
                 <div class="sucesso-detalhes">
                     ${itens.map(i => `<p><strong>${i.nome}</strong> (Qtd: ${i.quantidade}) - ${formatarMoeda(i.valor * i.quantidade)}</p>`).join('')}
                     <p><strong>Total:</strong> ${formatarMoeda(valorTotal)}</p>
                     <p><strong>Status:</strong> ${detalhes.status}</p>
                 </div>
-                <p class="sucesso-email">Um e-mail de confirmação foi enviado para: <strong>${detalhes.payer.email_address}</strong></p>
-                <a href="produtos.html" class="btn btn-primary">Continuar Comprando</a>
+                <p class="sucesso-email">A confirmation email has been sent to: <strong>${detalhes.payer.email_address}</strong></p>
+                <a href="produtos.html" class="btn btn-primary">Continue Shopping</a>
             </div>
         `;
     }
 
     // ========================================
-    // MÁSCARAS DE INPUT
+    // INPUT MASKS
     // ========================================
     const cpfInput = document.getElementById('cpf');
     const telefoneInput = document.getElementById('telefone');
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ========================================
-    // SELEÇÃO DE MÉTODO DE PAGAMENTO
+    // PAYMENT METHOD SELECTION
     // ========================================
     const paymentOptions = document.querySelectorAll('.payment-option');
     const btnWhatsApp = document.getElementById('btnWhatsApp');
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ========================================
-    // BOTÃO WHATSAPP
+    // WHATSAPP BUTTON
     // ========================================
     btnWhatsApp.addEventListener('click', function () {
         if (!validarFormulario()) return;
@@ -236,25 +236,25 @@ document.addEventListener('DOMContentLoaded', function () {
             .join('\n');
 
         const mensagem = encodeURIComponent(
-            `Olá! Gostaria de finalizar a compra.\n\n` +
-            `*Itens do Pedido:*\n${listaItens}\n\n` +
+            `Hello! I would like to complete my purchase.\n\n` +
+            `*Order Items:*\n${listaItens}\n\n` +
             `*Total:* ${formatarMoeda(valorTotal)}\n\n` +
-            `*Dados do Cliente:*\n` +
-            `Nome: ${nome}\n` +
-            `CPF: ${document.getElementById('cpf').value}\n` +
-            `Telefone: ${document.getElementById('telefone').value}\n` +
-            `E-mail: ${document.getElementById('email').value}\n\n` +
-            `*Endereço:*\n` +
+            `*Customer Details:*\n` +
+            `Name: ${nome}\n` +
+            `Tax ID: ${document.getElementById('cpf').value}\n` +
+            `Phone: ${document.getElementById('telefone').value}\n` +
+            `Email: ${document.getElementById('email').value}\n\n` +
+            `*Address:*\n` +
             `${document.getElementById('endereco').value}\n` +
             `${document.getElementById('bairro').value} - ${document.getElementById('cidade').value}/${document.getElementById('estado').value}\n` +
-            `CEP: ${document.getElementById('cep').value}`
+            `ZIP: ${document.getElementById('cep').value}`
         );
 
         window.open(`https://wa.me/5511956970564?text=${mensagem}`, '_blank');
     });
 
     // ========================================
-    // GERAR OPÇÕES DE PARCELAMENTO
+    // GENERATE INSTALLMENT OPTIONS
     // ========================================
     function gerarOpcoesParcelamento(valor) {
         const container = document.getElementById('parcelamentoOptions');
@@ -263,8 +263,8 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let i = 1; i <= 6; i++) {
             const valorParcela = valor / i;
             const texto = i === 1
-                ? `1x de ${formatarMoeda(valorParcela)} à vista`
-                : `${i}x de ${formatarMoeda(valorParcela)} sem juros`;
+                ? `1x of ${formatarMoeda(valorParcela)} cash`
+                : `${i}x of ${formatarMoeda(valorParcela)} interest-free`;
 
             const label = document.createElement('label');
             label.className = `parcelamento-option ${i === 1 ? 'active' : ''}`;
@@ -286,21 +286,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ========================================
-    // ATUALIZAR TOTAL BASEADO NAS PARCELAS
+    // UPDATE TOTAL BASED ON INSTALLMENTS
     // ========================================
     function atualizarTotal(parcelas, valor) {
         const valorParcela = valor / parcelas;
         const parcelasElement = document.getElementById('resumo-parcelas');
 
         if (parcelas === 1) {
-            parcelasElement.textContent = 'Pagamento à vista';
+            parcelasElement.textContent = 'Cash payment';
         } else {
-            parcelasElement.textContent = `${parcelas}x de ${formatarMoeda(valorParcela)} sem juros`;
+            parcelasElement.textContent = `${parcelas}x of ${formatarMoeda(valorParcela)} interest-free`;
         }
     }
 
     // ========================================
-    // FUNÇÕES AUXILIARES
+    // HELPER FUNCTIONS
     // ========================================
     function formatarMoeda(valor) {
         return valor.toLocaleString('pt-BR', {
@@ -316,21 +316,21 @@ document.addEventListener('DOMContentLoaded', function () {
             const input = document.getElementById(campo);
             if (!input.value.trim()) {
                 input.focus();
-                alert(`Por favor, preencha o campo: ${campo.charAt(0).toUpperCase() + campo.slice(1)}`);
+                alert(`Please fill in the field: ${campo.charAt(0).toUpperCase() + campo.slice(1)}`);
                 return false;
             }
         }
 
         const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
         if (cpf.length !== 11) {
-            alert('CPF inválido');
+            alert('Invalid Tax ID');
             document.getElementById('cpf').focus();
             return false;
         }
 
         const cep = document.getElementById('cep').value.replace(/\D/g, '');
         if (cep.length !== 8) {
-            alert('CEP inválido');
+            alert('Invalid ZIP code');
             document.getElementById('cep').focus();
             return false;
         }

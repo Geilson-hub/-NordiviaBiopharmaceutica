@@ -1,6 +1,6 @@
 /**
- * Teste da camada de dados usando PostgreSQL em memória (pg-mem).
- * Roda com: npm run test:db
+ * Data layer test using in-memory PostgreSQL (pg-mem).
+ * Run with: npm run test:db
  */
 
 const { newDb } = require('pg-mem');
@@ -11,34 +11,34 @@ const criarDb = require('./db');
     const { Pool } = memoria.adapters.createPg();
     const db = await criarDb({ pool: new Pool() });
 
-    if (!db.usarPostgres) throw new Error('Deveria estar usando PostgreSQL');
+    if (!db.usarPostgres) throw new Error('Should be using PostgreSQL');
 
     const lista = await db.listarProdutos();
-    console.log('Seed:', lista.length, 'produtos');
-    if (lista.length !== 36) throw new Error('Falha no seed: esperado 36');
+    console.log('Seed:', lista.length, 'products');
+    if (lista.length !== 36) throw new Error('Seed failed: expected 36');
 
     const novo = await db.criarProduto({
-        nome: 'Teste Postgres',
+        nome: 'Test Postgres',
         preco: 123.45,
-        categoria: 'Teste',
+        categoria: 'Test',
         dosagem: '1mg',
-        formaApresentacao: 'Pó',
-        armazenamento: 'Refrigerado',
-        prazoValidade: '24 meses',
+        formaApresentacao: 'Powder',
+        armazenamento: 'Refrigerated',
+        prazoValidade: '24 months',
         imagem: './img/hero.png',
-        descricaoCompleta: 'Produto criado via PostgreSQL.'
+        descricaoCompleta: 'Product created via PostgreSQL.'
     });
-    console.log('Criado:', novo.id, '-', novo.nome);
-    if (novo.id !== 'teste-postgres') throw new Error('Falha no id gerado');
+    console.log('Created:', novo.id, '-', novo.nome);
+    if (novo.id !== 'teste-postgres') throw new Error('Generated ID failed');
 
     const atualizado = await db.atualizarProduto(novo.id, {
-        nome: 'Teste Editado',
+        nome: 'Test Edited',
         preco: 200,
-        categoria: 'Teste',
-        descricaoCompleta: 'Editado.'
+        categoria: 'Test',
+        descricaoCompleta: 'Edited.'
     });
-    console.log('Atualizado:', atualizado.nome, '-', atualizado.preco);
-    if (atualizado.nome !== 'Teste Editado' || atualizado.preco !== 200) throw new Error('Falha no update');
+    console.log('Updated:', atualizado.nome, '-', atualizado.preco);
+    if (atualizado.nome !== 'Test Edited' || atualizado.preco !== 200) throw new Error('Update failed');
 
     let deuDuplicado = false;
     try {
@@ -46,11 +46,11 @@ const criarDb = require('./db');
     } catch (e) {
         deuDuplicado = e.status === 409;
     }
-    if (!deuDuplicado) throw new Error('Falha no 409 (id duplicado)');
+    if (!deuDuplicado) throw new Error('Duplicate ID (409) test failed');
 
     await db.removerProduto(novo.id);
     const final = await db.listarProdutos();
-    if (final.length !== 36) throw new Error('Falha no delete: esperado 36');
+    if (final.length !== 36) throw new Error('Delete failed: expected 36');
 
     let deuNaoEncontrado = false;
     try {
@@ -58,10 +58,10 @@ const criarDb = require('./db');
     } catch (e) {
         deuNaoEncontrado = e.status === 404;
     }
-    if (!deuNaoEncontrado) throw new Error('Falha no 404');
+    if (!deuNaoEncontrado) throw new Error('Not found (404) test failed');
 
-    console.log('TODOS OS TESTES OK');
+    console.log('ALL TESTS PASSED');
 })().catch(err => {
-    console.error('FALHOU:', err.message);
+    console.error('FAILED:', err.message);
     process.exit(1);
 });

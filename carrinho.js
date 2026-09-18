@@ -1,6 +1,6 @@
 /**
  * =====================================================
- * PÁGINA DO CARRINHO - Lista, seleção e quantidades
+ * CART PAGE - List, selection and quantities
  * =====================================================
  */
 
@@ -55,19 +55,19 @@ function renderizarCarrinho() {
         row.dataset.id = item.id;
 
         row.innerHTML = `
-            <input type="checkbox" class="carrinho-item-check" ${item.selecionado !== false ? 'checked' : ''} aria-label="Selecionar ${item.nome}">
+            <input type="checkbox" class="carrinho-item-check" ${item.selecionado !== false ? 'checked' : ''} aria-label="Select ${item.nome}">
             <img src="${item.imagem}" alt="${item.nome}" class="carrinho-item-img">
             <div class="carrinho-item-info">
                 <h3>${item.nome}</h3>
                 <p>${item.categoria}</p>
             </div>
             <div class="quantidade-controle">
-                <button type="button" class="qtd-btn menos" aria-label="Diminuir">−</button>
+                <button type="button" class="qtd-btn menos" aria-label="Decrease">−</button>
                 <span class="qtd-valor">${item.quantidade}</span>
-                <button type="button" class="qtd-btn mais" aria-label="Aumentar">+</button>
+                <button type="button" class="qtd-btn mais" aria-label="Increase">+</button>
             </div>
             <span class="carrinho-item-preco">${formatarMoeda(item.valor * item.quantidade)}</span>
-            <button type="button" class="carrinho-remover" aria-label="Remover ${item.nome}">✕</button>
+            <button type="button" class="carrinho-remover" aria-label="Remove ${item.nome}">✕</button>
         `;
 
         container.appendChild(row);
@@ -105,7 +105,7 @@ function atualizarResumo(items) {
     const total = selecionados.reduce((acc, i) => acc + (i.valor * i.quantidade), 0);
 
     document.getElementById('carrinhoSelecionadosInfo').textContent =
-        `${selecionados.length} ${selecionados.length === 1 ? 'item selecionado' : 'itens selecionados'}`;
+        `${selecionados.length} ${selecionados.length === 1 ? 'item selected' : 'items selected'}`;
     document.getElementById('carrinhoTotal').textContent = formatarMoeda(total);
     document.getElementById('carrinhoTotalFinal').textContent = formatarMoeda(total);
 
@@ -116,7 +116,7 @@ function atualizarResumo(items) {
 function irParaPagamento() {
     const selecionados = Carrinho.obterSelecionados();
     if (selecionados.length === 0) {
-        alert('Selecione ao menos um produto para pagamento.');
+        alert('Please select at least one product for payment.');
         return;
     }
     window.location.href = 'checkout.html';

@@ -1,12 +1,12 @@
 /* =====================================================
-   PAINEL DO ADMINISTRADOR
+   ADMINISTRATOR PANEL
    ===================================================== */
 
 .admin-body {
     background: var(--bg);
 }
 
-/* ========== TELA DE LOGIN ========== */
+/* ========== LOGIN SCREEN ========== */
 .admin-login {
     min-height: 100vh;
     display: flex;

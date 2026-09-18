@@ -4,132 +4,132 @@ const PRODUTOS_PADRAO = [
         preco: 450,
         nome: "Adipotide-5mg",
         imagem: "./img/adipotide-5mg.png",
-        descricaoCompleta: "Adipotide é um análogo sintético da proteína, age como um agonista dos receptores GPR119 e GPR55, ambos envolvidos no metabolismo de lipídeos e carboidratos. O medicamento foi desenvolvido para o tratamento da obesidade e da diabetes mellitus tipo 2, e tem demonstrado resultados promissores em estudos clínicos.",
-        categoria: "Perda de Peso",
+        descricaoCompleta: "Adipotide is a synthetic protein analog that acts as an agonist of GPR119 and GPR55 receptors, both involved in lipid and carbohydrate metabolism. The drug was developed for the treatment of obesity and type 2 diabetes mellitus, and has shown promising results in clinical studies.",
+        categoria: "Weight Loss",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "aod-9604-5mg",
         preco: 380,
         nome: "AOD-9604-5mg",
         imagem: "./img/aod-9604-5mg.png",
-        descricaoCompleta: "Fragmento do hormônio do crescimento humano que estimula a lipólise e inibe a lipogênese. Utilizado para perda de peso e melhora da composição corporal. O AOD-9604 é o fragmento 176-191 do hormônio do crescimento humano, responsável pela atividade lipolítica.",
-        categoria: "Perda de Peso",
+        descricaoCompleta: "Fragment of human growth hormone that stimulates lipolysis and inhibits lipogenesis. Used for weight loss and body composition improvement. AOD-9604 is fragment 176-191 of human growth hormone, responsible for lipolytic activity.",
+        categoria: "Weight Loss",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "bpc-157-hero",
         preco: 420,
         nome: "BPC-157 Hero",
         imagem: "./img/bpc-157-hero.png",
-        descricaoCompleta: "BPC-157 Hero é um peptídeo sintético derivado de uma proteína do suco gástrico. Possui propriedades regenerativas, anti-inflamatórias e gastroprotetoras. Estudos demonstram sua eficácia na cicatrização de tecidos, reparo de lesões musculares e tendíneas, além de proteção do trato gastrointestinal.",
-        categoria: "Regeneração",
+        descricaoCompleta: "BPC-157 Hero is a synthetic peptide derived from a gastric juice protein. It has regenerative, anti-inflammatory and gastroprotective properties. Studies demonstrate its efficacy in tissue healing, muscle and tendon injury repair, and gastrointestinal tract protection.",
+        categoria: "Regeneration",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "cagrilintide-hero",
         preco: 650,
         nome: "Cagrilintide Hero",
         imagem: "./img/cagrilintide-hero.png",
-        descricaoCompleta: "Cagrilintide é um análogo da amilina sintética com meia-vida prolongada. Age em conjunto com o GLP-1 para promover saciedade e redução de peso. Estudos clínicos demonstram redução significativa do peso corporal quando combinado com semaglutida.",
-        categoria: "Perda de Peso",
+        descricaoCompleta: "Cagrilintide is a synthetic amylin analog with extended half-life. It works in conjunction with GLP-1 to promote satiety and weight reduction. Clinical studies demonstrate significant body weight reduction when combined with semaglutide.",
+        categoria: "Weight Loss",
         dosagem: "2mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "cartalax-hero",
         preco: 380,
         nome: "Cartalax Hero",
         imagem: "./img/cartalax-hero.png",
-        descricaoCompleta: "Cartalax é um peptídeo sintético que estimula a regeneração de tecidos cartilaginosos e articulares. Promove a síntese de colágeno e proteoglicanos, sendo estudado para osteoartrite e lesões articulares degenerativas.",
-        categoria: "Regeneração",
+        descricaoCompleta: "Cartalax is a synthetic peptide that stimulates the regeneration of cartilaginous and joint tissues. Promotes collagen and proteoglycan synthesis, being studied for osteoarthritis and degenerative joint injuries.",
+        categoria: "Regeneration",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "cerebrolysin-hero",
         preco: 520,
         nome: "Cerebrolysin Hero",
         imagem: "./img/cerebrolysin-hero.png",
-        descricaoCompleta: "Cerebrolysin é uma mistura de peptídeos nootrópicos derivados do cérebro suíno. Possui propriedades neuroprotetoras, neurotróficas e neuromoduladoras. É utilizado para melhorar cognição, memória e recuperação neurológica em condições como AVC e demência.",
-        categoria: "Saúde Cognitiva",
+        descricaoCompleta: "Cerebrolysin is a mixture of nootropic peptides derived from porcine brain. It has neuroprotective, neurotrophic and neuromodulatory properties. It is used to improve cognition, memory and neurological recovery in conditions such as stroke and dementia.",
+        categoria: "Cognitive Health",
         dosagem: "5ml",
-        formaApresentacao: "Solução injetável",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "36 meses"
+        formaApresentacao: "Injectable solution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "36 months"
     },
     {
         id: "cido-hialur-nico-hero",
         preco: 350,
         nome: "Ácido Hialurônico Hero",
         imagem: "./img/cido-hialur-nico-hero.png",
-        descricaoCompleta: "Ácido Hialurônico é uma molécula natural presente na pele e tecidos conjuntivos. Possui alta capacidade de retenção de água, promovendo hidratação profunda, preenchimento de rugas e melhora da elasticidade cutânea. Utilizado em procedimentos estéticos e dermatológicos.",
+        descricaoCompleta: "Hyaluronic Acid is a natural molecule present in skin and connective tissues. It has high water retention capacity, promoting deep hydration, wrinkle filling and improved skin elasticity. Used in aesthetic and dermatological procedures.",
         categoria: "Anti-aging",
         dosagem: "5ml",
-        formaApresentacao: "Solução injetável",
-        armazenamento: "Temperatura ambiente",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Injectable solution",
+        armazenamento: "Room temperature",
+        prazoValidade: "24 months"
     },
     {
         id: "cjc-1295-hero",
         preco: 420,
         nome: "CJC-1295 Hero",
         imagem: "./img/cjc-1295-hero.png",
-        descricaoCompleta: "CJC-1295 é um análogo do hormônio liberador de hormônio do crescimento (GHRH) com meia-vida prolongada. Estimula a liberação sustentada de GH, promovendo sono, recuperação muscular, queima de gordura e anti-aging. O DAC (Drug Affinity Complex) prolonga a ação por até 6-8 dias.",
-        categoria: "Hormônio do Crescimento",
+        descricaoCompleta: "CJC-1295 is a growth hormone releasing hormone (GHRH) analog with extended half-life. Stimulates sustained GH release, promoting sleep, muscle recovery, fat burning and anti-aging. The DAC (Drug Affinity Complex) prolongs action for up to 6-8 days.",
+        categoria: "Growth Hormone",
         dosagem: "2mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "cjc-1295-with-dac-5mg",
         preco: 420,
         nome: "CJC-1295 with DAC-5mg",
         imagem: "./img/cjc-1295-with-dac-5mg.jpeg",
-        descricaoCompleta: "Análogo do hormônio liberador de hormônio do crescimento (GHRH). Estimula a liberação sustentada de GH, promovendo sono, recuperação muscular e queima de gordura. O DAC (Drug Affinity Complex) prolonga a meia-vida do composto para até 6-8 dias.",
-        categoria: "Hormônio do Crescimento",
+        descricaoCompleta: "Growth hormone releasing hormone (GHRH) analog. Stimulates sustained GH release, promoting sleep, muscle recovery and fat burning. The DAC (Drug Affinity Complex) extends the compound's half-life to up to 6-8 days.",
+        categoria: "Growth Hormone",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "dsip-hero",
         preco: 320,
         nome: "DSIP Hero",
         imagem: "./img/dsip-hero.png",
-        descricaoCompleta: "DSIP (Delta Sleep-Inducing Peptide) é um neuropeptídeo que induz o sono de ondas lentas. Possui propriedades ansiolíticas, reguladoras do ritmo circadiano e neuroprotetoras. Utilizado para tratamento de insônia e distúrbios do sono.",
-        categoria: "Saúde Cognitiva",
+        descricaoCompleta: "DSIP (Delta Sleep-Inducing Peptide) is a neuropeptide that induces slow-wave sleep. It has anxiolytic, circadian rhythm regulating and neuroprotective properties. Used for treatment of insomnia and sleep disorders.",
+        categoria: "Cognitive Health",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "epithalon-hero",
         preco: 580,
         nome: "Epithalon Hero",
         imagem: "./img/epithalon-hero.png",
-        descricaoCompleta: "Epithalon (Epitalon) é um tetrapeptídeo sintético que estimula a enzima telomerase, aumentando o comprimento dos telômeros. Promove rejuvenescimento celular, melhora da imunidade e extensão da expectativa de vida. É um dos compostos mais estudados em pesquisa de longevidade.",
-        categoria: "Longevidade",
+        descricaoCompleta: "Epithalon (Epitalon) is a synthetic tetrapeptide that stimulates the telomerase enzyme, increasing telomere length. Promotes cellular rejuvenation, improved immunity and extended lifespan. It is one of the most studied compounds in longevity research.",
+        categoria: "Longevity",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -137,12 +137,12 @@ const PRODUTOS_PADRAO = [
         preco: 620,
         nome: "Follistatin Hero",
         imagem: "./img/follistatin-hero.png",
-        descricaoCompleta: "Follistatin Hero é uma formulação avançada de Follistatin que inibe a miostatina, promovendo crescimento muscular significativo. Utilizado para aumento de massa muscular, tratamento de sarcopenia e melhora da performance atlética.",
-        categoria: "Crescimento Muscular",
+        descricaoCompleta: "Follistatin Hero is an advanced Follistatin formulation that inhibits myostatin, promoting significant muscle growth. Used for muscle mass increase, sarcopenia treatment and athletic performance improvement.",
+        categoria: "Muscle Growth",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -150,12 +150,12 @@ const PRODUTOS_PADRAO = [
         preco: 280,
         nome: "GHK-Cu Skin Care Hero",
         imagem: "./img/ghk-cu-skin-care-hero.png",
-        descricaoCompleta: "GHK-Cu Skin Care é uma formulação tópica avançada de complexo de cobre-tripeptídeo. Estimula a produção de colágeno e elastina, melhora a elasticidade da pele, reduz rugas e promove rejuvenescimento cutâneo visível.",
+        descricaoCompleta: "GHK-Cu Skin Care is an advanced topical copper-tripeptide complex formulation. Stimulates collagen and elastin production, improves skin elasticity, reduces wrinkles and promotes visible skin rejuvenation.",
         categoria: "Anti-aging",
         dosagem: "30ml",
-        formaApresentacao: "Solução tópica",
-        armazenamento: "Temperatura ambiente",
-        prazoValidade: "12 meses"
+        formaApresentacao: "Topical solution",
+        armazenamento: "Room temperature",
+        prazoValidade: "12 months"
     },
 
     {
@@ -163,12 +163,12 @@ const PRODUTOS_PADRAO = [
         preco: 350,
         nome: "Glow Hero",
         imagem: "./img/glow-hero.png",
-        descricaoCompleta: "Glow Hero é uma formulação premium de peptídeos bioativos para skincare. Promove luminosidade, elasticidade e hidratação profunda da pele, combatendo sinais de envelhecimento e melhorando a textura cutânea.",
+        descricaoCompleta: "Glow Hero is a premium bioactive peptide formulation for skincare. Promotes luminosity, elasticity and deep skin hydration, combating signs of aging and improving skin texture.",
         categoria: "Anti-aging",
         dosagem: "50mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -176,12 +176,12 @@ const PRODUTOS_PADRAO = [
         preco: 320,
         nome: "HCG Hero",
         imagem: "./img/hcg-hero.png",
-        descricaoCompleta: "HCG Hero é uma apresentação premium de gonadotrofina coriônica humana. Utilizada para estimular a produção de testosterona endógena, preservar a fertilidade durante ciclos anabólicos e auxiliar na queima de gordura.",
-        categoria: "Hormônio",
+        descricaoCompleta: "HCG Hero is a premium presentation of human chorionic gonadotropin. Used to stimulate endogenous testosterone production, preserve fertility during anabolic cycles and assist in fat burning.",
+        categoria: "Hormone",
         dosagem: "5000UI",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -189,12 +189,12 @@ const PRODUTOS_PADRAO = [
         preco: 450,
         nome: "HGH Fragment 176-191 Hero",
         imagem: "./img/hgh-fragment-176-191-hero.png",
-        descricaoCompleta: "HGH Fragment 176-191 Hero é uma formulação avançada do fragmento ativo do hormônio do crescimento focada exclusivamente em lipólise. Promove queima de gordura potente sem efeitos colaterais de crescimento de tecidos.",
-        categoria: "Perda de Peso",
+        descricaoCompleta: "HGH Fragment 176-191 Hero is an advanced formulation of the active growth hormone fragment focused exclusively on lipolysis. Promotes potent fat burning without tissue growth side effects.",
+        categoria: "Weight Loss",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "hgh-somatropina-hero",
@@ -202,11 +202,11 @@ const PRODUTOS_PADRAO = [
         nome: "HGH Somatropina Hero",
         imagem: "./img/hgh-somatropina-hero.png",
         descricaoCompleta: "Somatropina Hero é o hormônio do crescimento humano (HGH) recombinante de alta pureza. Estimula crescimento muscular, queima de gordura, regeneração tecidual e anti-aging. Indicado para deficiência de GH, performance atlética e rejuvenescimento.",
-        categoria: "Hormônio do Crescimento",
+        categoria: "Growth Hormone",
         dosagem: "10UI",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -214,24 +214,24 @@ const PRODUTOS_PADRAO = [
         preco: 620,
         nome: "IGF-1 LR3 Hero",
         imagem: "./img/igf-1-lr3-hero.png",
-        descricaoCompleta: "IGF-1 LR3 Hero é uma formulação avançada de fator de crescimento insulínico tipo 1 com meia-vida prolongada. Estimula hiperplasia muscular, regeneração tecidual e recuperação pós-exercício. Indicado para atletas e protocolos de crescimento muscular.",
-        categoria: "Crescimento Muscular",
+        descricaoCompleta: "IGF-1 LR3 Hero is an advanced formulation of insulin-like growth factor type 1 with extended half-life. Stimulates muscle hyperplasia, tissue regeneration and post-exercise recovery. Indicated for athletes and muscle growth protocols.",
+        categoria: "Muscle Growth",
         dosagem: "1mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "igf-des-hero",
         preco: 480,
         nome: "IGF-DES Hero",
         imagem: "./img/igf-des-hero.png",
-        descricaoCompleta: "IGF-DES (Descarboxilado) é uma forma de IGF-1 de ação rápida. Estimula regeneração muscular, reparo tecidual e crescimento celular. Possui meia-vida curta, sendo ideal para protocolos de recuperação pós-treino.",
-        categoria: "Crescimento Muscular",
+        descricaoCompleta: "IGF-DES (Decarboxylated) is a fast-acting form of IGF-1. Stimulates muscle regeneration, tissue repair and cell growth. It has a short half-life, making it ideal for post-workout recovery protocols.",
+        categoria: "Muscle Growth",
         dosagem: "1mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -239,12 +239,12 @@ const PRODUTOS_PADRAO = [
         preco: 520,
         nome: "Ipamorelin Hero",
         imagem: "./img/ipamorelin-hero.png",
-        descricaoCompleta: "Ipamorelin Hero é uma formulação premium do secretagogo de GH mais seletivo disponível. Estimula a liberação natural de hormônio do crescimento sem afetar cortisol ou appetite. Melhora sono, composição corporal e recuperação.",
-        categoria: "Hormônio do Crescimento",
+        descricaoCompleta: "Ipamorelin Hero is a premium formulation of the most selective GH secretagogue available. Stimulates natural growth hormone release without affecting cortisol or appetite. Improves sleep, body composition and recovery.",
+        categoria: "Growth Hormone",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -252,24 +252,24 @@ const PRODUTOS_PADRAO = [
         preco: 380,
         nome: "Klow Hero",
         imagem: "./img/klow-hero.png",
-        descricaoCompleta: "Klow Hero é uma formulação premium lipolítica e anti-inflamatória. Auxilia na redução de gordura localizada, melhora da sensibilidade insulínica e composição corporal. Indicado para protocolos avançados de perda de peso.",
-        categoria: "Perda de Peso",
+        descricaoCompleta: "Klow Hero is a premium lipolytic and anti-inflammatory formulation. Aids in localized fat reduction, improved insulin sensitivity and body composition. Indicated for advanced weight loss protocols.",
+        categoria: "Weight Loss",
         dosagem: "80mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "kpv-hero",
         preco: 350,
         nome: "KPV Hero",
         imagem: "./img/kpv-hero.png",
-        descricaoCompleta: "KPV é um peptídeo anti-inflamatório derivado da alfa-MSH. Possui ação potente no trato gastrointestinal, sendo estudado para tratamento de colite ulcerativa, doença de Crohn e outras condições inflamatórias intestinais.",
-        categoria: "Anti-inflamatório",
+        descricaoCompleta: "KPV is an anti-inflammatory peptide derived from alpha-MSH. It has potent action in the gastrointestinal tract, being studied for treatment of ulcerative colitis, Crohn's disease and other inflammatory intestinal conditions.",
+        categoria: "Anti-inflammatory",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -277,12 +277,12 @@ const PRODUTOS_PADRAO = [
         preco: 320,
         nome: "Lemon Bottle Hero",
         imagem: "./img/lemon-bottle-hero.png",
-        descricaoCompleta: "Lemon Bottle Hero é uma fórmula lipolítica premium de alta concentração. Combina aminoácidos, vitaminas e cofatores para acelerar a queima de gordura localizada. Indicado para aplicação tópica em áreas de acúmulo de gordura.",
-        categoria: "Perda de Peso",
+        descricaoCompleta: "Lemon Bottle Hero is a premium high-concentration lipolytic formula. Combines amino acids, vitamins and cofactors to accelerate localized fat burning. Indicated for topical application in fat accumulation areas.",
+        categoria: "Weight Loss",
         dosagem: "10ml",
-        formaApresentacao: "Solução para aplicação tópica",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "12 meses"
+        formaApresentacao: "Topical application solution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "12 months"
     },
 
     {
@@ -290,24 +290,24 @@ const PRODUTOS_PADRAO = [
         preco: 480,
         nome: "MOTS-c Hero",
         imagem: "./img/mots-c-hero.png",
-        descricaoCompleta: "MOTS-c Hero é uma formulação premium de peptídeo mitocondrial. Regula o metabolismo energético, melhora a sensibilidade insulínica e a queima de gordura. Indicado para otimização metabólica e performance atlética.",
-        categoria: "Metabolismo",
+        descricaoCompleta: "MOTS-c Hero is a premium mitochondrial peptide formulation. Regulates energy metabolism, improves insulin sensitivity and fat burning. Indicated for metabolic optimization and athletic performance.",
+        categoria: "Metabolism",
         dosagem: "20mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "nadplus-hero",
         preco: 580,
         nome: "NAD+ Hero",
         imagem: "./img/nadplus-hero.png",
-        descricaoCompleta: "NAD+ (Nicotinamida Adenina Dinucleotídeo) é uma coenzima essencial para o metabolismo celular. Promove longevidade, reparo de DNA, função mitocondrial e rejuvenescimento celular. Indicado para anti-aging e otimização energética.",
-        categoria: "Longevidade",
+        descricaoCompleta: "NAD+ (Nicotinamide Adenine Dinucleotide) is an essential coenzyme for cellular metabolism. Promotes longevity, DNA repair, mitochondrial function and cellular rejuvenation. Indicated for anti-aging and energy optimization.",
+        categoria: "Longevity",
         dosagem: "500mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -315,12 +315,12 @@ const PRODUTOS_PADRAO = [
         preco: 420,
         nome: "Pinealon Hero",
         imagem: "./img/pinealon-hero.png",
-        descricaoCompleta: "Pinealon Hero é uma formulação premium de peptídeo citoprotetor. Penetra a barreira hematoencefálica promovendo proteção neuronal, melhora cognitiva e regeneração do sistema nervoso central.",
-        categoria: "Saúde Cognitiva",
+        descricaoCompleta: "Pinealon Hero is a premium cytoprotective peptide formulation. Crosses the blood-brain barrier promoting neuronal protection, cognitive improvement and central nervous system regeneration.",
+        categoria: "Cognitive Health",
         dosagem: "10mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -328,36 +328,36 @@ const PRODUTOS_PADRAO = [
         preco: 420,
         nome: "PT-141 Hero",
         imagem: "./img/pt-141-hero.png",
-        descricaoCompleta: "PT-141 Hero é uma formulação premium de Bremelanotide. Agonista seletivo do receptor MC3R que atua no sistema nervoso central para aumentar a libido e excitação em ambos os sexos. Resultados rápidos e potentes.",
-        categoria: "Saúde Sexual",
+        descricaoCompleta: "PT-141 Hero is a premium Bremelanotide formulation. Selective MC3R receptor agonist that acts on the central nervous system to increase libido and arousal in both sexes. Fast and potent results.",
+        categoria: "Sexual Health",
         dosagem: "10mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "ptd-dbm-hero",
         preco: 480,
         nome: "PTD-DBM Hero",
         imagem: "./img/ptd-dbm-hero.png",
-        descricaoCompleta: "PTD-DBM é um peptídeo nootrópico que atravessa a barreira hematoencefálica. Promove melhora da memória, foco e função cognitiva. Utilizado para otimização mental e tratamento de condições neurodegenerativas.",
-        categoria: "Saúde Cognitiva",
+        descricaoCompleta: "PTD-DBM is a nootropic peptide that crosses the blood-brain barrier. Promotes improved memory, focus and cognitive function. Used for mental optimization and treatment of neurodegenerative conditions.",
+        categoria: "Cognitive Health",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "retatrutida-hero",
         preco: 780,
         nome: "Retatrutide Hero",
         imagem: "./img/retatrutida-hero.png",
-        descricaoCompleta: "Retatrutide Hero é um agonista tripla de receptores GLP-1, GIP e glucagon. Potente promotor de perda de peso e melhora metabólica, sendo um dos compostos mais promissores para obesidade e diabetes tipo 2.",
-        categoria: "Perda de Peso",
+        descricaoCompleta: "Retatrutide Hero is a triple agonist of GLP-1, GIP and glucagon receptors. Potent promoter of weight loss and metabolic improvement, being one of the most promising compounds for obesity and type 2 diabetes.",
+        categoria: "Weight Loss",
         dosagem: "10mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -365,12 +365,12 @@ const PRODUTOS_PADRAO = [
         preco: 380,
         nome: "Semax Hero",
         imagem: "./img/semax-hero.png",
-        descricaoCompleta: "Semax é um nootrópico peptídico sintético derivado do ACTH. Promove neuroproteção, melhora da memória, foco e cognição, atuando sobre fatores neurotróficos no sistema nervoso central.",
-        categoria: "Saúde Cognitiva",
+        descricaoCompleta: "Semax is a synthetic nootropic peptide derived from ACTH. Promotes neuroprotection, improved memory, focus and cognition, acting on neurotrophic factors in the central nervous system.",
+        categoria: "Cognitive Health",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
 
     {
@@ -378,72 +378,72 @@ const PRODUTOS_PADRAO = [
         preco: 420,
         nome: "SLU-PP-332-5mg",
         imagem: "./img/slu-pp-332-5mg.jpeg",
-        descricaoCompleta: "Agonista do receptor ERRγ que estimula a biogênese mitocondrial. Melhora a resistência muscular e a capacidade oxidativa, sendo estudado para envelhecimento e performance. O SLU-PP-332 ativa vias de extensão da longevidade.",
-        categoria: "Longevidade",
+        descricaoCompleta: "ERRγ receptor agonist that stimulates mitochondrial biogenesis. Improves muscle endurance and oxidative capacity, being studied for aging and performance. SLU-PP-332 activates longevity extension pathways.",
+        categoria: "Longevity",
         dosagem: "5mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "ss-31-10mg",
         preco: 380,
         nome: "SS-31-10mg",
         imagem: "./img/ss-31-10mg.jpeg",
-        descricaoCompleta: "Peptídeo mitocondrial que protege contra o estresse oxidativo. Melhora a função mitocondrial, sendo estudado para doenças neurodegenerativas e envelhecimento. O SS-31 (Elamipretide) seleta acima da membrana mitocondrial interna.",
-        categoria: "Saúde Mitochondrial",
+        descricaoCompleta: "Mitochondrial peptide that protects against oxidative stress. Improves mitochondrial function, being studied for neurodegenerative diseases and aging. SS-31 (Elamipretide) is selective above the inner mitochondrial membrane.",
+        categoria: "Mitochondrial Health",
         dosagem: "10mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "tesamorelin-10mg",
         preco: 450,
         nome: "Tesamorelin-10mg",
         imagem: "./img/tesamorelin-10mg.jpeg",
-        descricaoCompleta: "Análogo do GHRH aprovado para redução de gordura abdominal em pacientes com HIV. Estimula a liberação de GH de forma fisiológica. A Tesamorelin é aprovada pela FDA para lipodistrofia associada ao HIV.",
-        categoria: "Hormônio do Crescimento",
+        descricaoCompleta: "GHRH analog approved for abdominal fat reduction in HIV patients. Stimulates GH release in a physiological manner. Tesamorelin is FDA-approved for HIV-associated lipodystrophy.",
+        categoria: "Growth Hormone",
         dosagem: "10mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "thymosin-alpha1-10mg",
         preco: 520,
         nome: "Thymosin Alpha-1-10mg",
         imagem: "./img/thymosin-alpha1-10mg.jpeg",
-        descricaoCompleta: "Peptídeo imunomodulador derivado do timo. Fortalece a resposta imunológica, sendo utilizado em infecções virais, câncer e como coadjuvante vacinal. A Thymosin Alpha-1 é um peptídeo de 28 aminoácidos naturally present no timo.",
-        categoria: "Sistema Imunológico",
+        descricaoCompleta: "Thymosin Alpha-1 is a 28-amino acid peptide naturally present in the thymus. Strengthens immune response, being used in viral infections, cancer and as a vaccine adjuvant. Thymosin Alpha-1 is an immunomodulatory peptide derived from the thymus.",
+        categoria: "Immune System",
         dosagem: "10mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "tirzepatide-15mg",
         preco: 780,
         nome: "Tirzepatide-15mg",
         imagem: "./img/tirzepatide-15mg.jpeg",
-        descricaoCompleta: "Agonista duplo de receptores GLP-1 e GIP. Excelente resultado em perda de peso e controle glicêmico, sendo uma das opções mais eficazes para obesidade e diabetes tipo 2. A Tirzepatide é um peptídeo sintético de 39 aminoácidos.",
-        categoria: "Perda de Peso",
+        descricaoCompleta: "Dual agonist of GLP-1 and GIP receptors. Excellent results in weight loss and glycemic control, being one of the most effective options for obesity and type 2 diabetes. Tirzepatide is a synthetic 39-amino acid peptide.",
+        categoria: "Weight Loss",
         dosagem: "15mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     },
     {
         id: "tirzepatide-60mg",
         preco: 2250,
         nome: "Tirzepatide-60mg",
         imagem: "./img/tirzepatide-60mg.jpeg",
-        descricaoCompleta: "Apresentação de maior dose do Tirzepatide. Agonista duplo GLP-1/GIP para protocolos avançados de perda de peso e controle metabólico. Esta apresentação permite dosagens mais altas para pacientes que necessitam de tratamento intensivo.",
-        categoria: "Perda de Peso",
+        descricaoCompleta: "Higher dose presentation of Tirzepatide. Dual GLP-1/GIP agonist for advanced weight loss and metabolic control protocols. This presentation allows higher dosages for patients requiring intensive treatment.",
+        categoria: "Weight Loss",
         dosagem: "60mg",
-        formaApresentacao: "Pó liofilizado para reconstituição",
-        armazenamento: "Refrigerado (2-8°C)",
-        prazoValidade: "24 meses"
+        formaApresentacao: "Lyophilized powder for reconstitution",
+        armazenamento: "Refrigerated (2-8°C)",
+        prazoValidade: "24 months"
     }
 ];
 
@@ -460,7 +460,7 @@ const PRODUTOS_PROMISE = (async function carregarProdutos() {
             }
         }
     } catch (e) {
-        console.error('Não foi possível carregar produtos do servidor:', e);
+        console.error('Could not load products from server:', e);
     }
     produtos = PRODUTOS_PADRAO;
 })();

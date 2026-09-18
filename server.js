@@ -1,18 +1,18 @@
 /**
  * =====================================================
- * SERVIDOR NORDIVIA - API e arquivos estáticos
+ * NORDIVIA SERVER - API and static files
  * =====================================================
  *
- * Para rodar:  npm install  e depois  npm start
- * O site fica disponível em http://localhost:3000
+ * To run:  npm install  and then  npm start
+ * The site is available at http://localhost:3000
  *
- * Configuração via variáveis de ambiente (opcional):
- * - PORT          porta do servidor (padrão 3000)
- * - DATABASE_URL  URL do PostgreSQL (ex.: Neon/Supabase).
- *                 Se ausente, usa arquivo JSON local.
- * - PGSSL=true    habilita SSL no PostgreSQL
- * - ADMIN_USUARIO usuário do admin (padrão "admin")
- * - ADMIN_SENHA   senha do admin (padrão "nordivia2024")
+ * Configuration via environment variables (optional):
+ * - PORT          server port (default 3000)
+ * - DATABASE_URL  PostgreSQL URL (e.g., Neon/Supabase).
+ *                 If absent, uses local JSON file.
+ * - PGSSL=true    enables SSL on PostgreSQL
+ * - ADMIN_USUARIO admin username (default "admin")
+ * - ADMIN_SENHA   admin password (default "nordivia2024")
  * ===================================================== */
 
 const express = require('express');
@@ -38,7 +38,7 @@ function autenticado(req, res, next) {
     const header = req.headers.authorization || '';
     const token = header.startsWith('Bearer ') ? header.slice(7) : '';
     if (!tokens.has(token)) {
-        return res.status(401).json({ erro: 'Não autorizado' });
+        return res.status(401).json({ erro: 'Unauthorized' });
     }
     next();
 }
@@ -50,16 +50,16 @@ function handler(fn) {
         } catch (e) {
             const status = e.status || 500;
             if (status === 500) {
-                console.error('Erro na API:', e);
+                console.error('API error:', e);
             }
-            res.status(status).json({ erro: status === 500 ? 'Erro interno do servidor' : e.message });
+            res.status(status).json({ erro: status === 500 ? 'Internal server error' : e.message });
         }
     };
 }
 
-/* =====================================================
-   AUTENTICAÇÃO
-   ===================================================== */
+    /* =====================================================
+       AUTHENTICATION
+       ===================================================== */
 app.post('/api/login', (req, res) => {
     const { usuario, senha } = req.body || {};
     if (usuario === ADMIN_USUARIO && senha === ADMIN_SENHA) {
@@ -67,12 +67,12 @@ app.post('/api/login', (req, res) => {
         tokens.add(token);
         return res.json({ token });
     }
-    res.status(401).json({ erro: 'Usuário ou senha incorretos' });
+    res.status(401).json({ erro: 'Invalid username or password' });
 });
 
-/* =====================================================
-   PRODUTOS
-   ===================================================== */
+    /* =====================================================
+       PRODUCTS
+       ===================================================== */
 app.get('/api/produtos', handler(async (req, res) => {
     res.json(await db.listarProdutos());
 }));
@@ -80,7 +80,7 @@ app.get('/api/produtos', handler(async (req, res) => {
 app.post('/api/produtos', autenticado, handler(async (req, res) => {
     const dados = req.body || {};
     if (!dados.nome || !dados.categoria || !dados.descricaoCompleta) {
-        return res.status(400).json({ erro: 'Dados incompletos' });
+        return res.status(400).json({ erro: 'Incomplete data' });
     }
     const novo = await db.criarProduto(dados);
     res.status(201).json(novo);
@@ -100,12 +100,12 @@ let db;
 async function iniciar() {
     db = await criarDb();
     app.listen(PORT, () => {
-        console.log(`Servidor rodando em http://localhost:${PORT}`);
-        console.log(`Banco de dados: ${db.usarPostgres ? 'PostgreSQL' : 'arquivo JSON local'}`);
+        console.log(`Server running at http://localhost:${PORT}`);
+        console.log(`Database: ${db.usarPostgres ? 'PostgreSQL' : 'local JSON file'}`);
     });
 }
 
 iniciar().catch(err => {
-    console.error('Falha ao iniciar o servidor:', err);
+    console.error('Failed to start server:', err);
     process.exit(1);
 });

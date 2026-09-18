@@ -326,7 +326,7 @@ section {
     font-size: 1.125rem;
 }
 
-/* ========== 8. SEÇÃO SOBRE ========== */
+/* ========== 8. ABOUT SECTION ========== */
 .sobre {
     background: var(--bg);
 }
@@ -528,7 +528,7 @@ section {
 }
 
 /* =====================================================
-   PÁGINA DE PRODUTOS
+   PRODUCTS PAGE
    ===================================================== */
 
 /* Hero da página de produtos */
@@ -851,7 +851,7 @@ section {
     transform: translateY(-2px);
 }
 
-/* ========== PÁGINA DE DETALHES ========== */
+/* ========== DETAILS PAGE ========== */
 .detalhes-section {
     padding: 80px 0;
 }
@@ -1024,7 +1024,7 @@ section {
     }
 }
 
-/* ========== PÁGINA DE CHECKOUT ========== */
+/* ========== CHECKOUT PAGE ========== */
 .checkout-section {
     padding: 60px 0;
 }
@@ -1426,7 +1426,7 @@ section {
     }
 }
 
-/* ========== PÁGINA DO CARRINHO ========== */
+/* ========== CART PAGE ========== */
 .carrinho-section {
     padding: 140px 0 80px;
     min-height: 60vh;

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Painel Admin | Nordivia Biopharmaceuticals</title>
+    <title>Admin Panel | Nordivia Biopharmaceuticals</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="admin.css">
 </head>
@@ -18,21 +18,21 @@
             <div class="admin-login-logo">
                 <img src="./logo2.jpg" alt="Logo Norvidia">
             </div>
-            <h1>Painel do Administrador</h1>
-            <p>Entre para gerenciar os produtos</p>
+            <h1>Administrator Panel</h1>
+            <p>Log in to manage products</p>
             <form id="adminLoginForm">
                 <div class="form-group">
-                    <label for="adminUsuario">Usuário</label>
+                    <label for="adminUsuario">Username</label>
                     <input type="text" id="adminUsuario" name="adminUsuario" autocomplete="username" required>
                 </div>
                 <div class="form-group">
-                    <label for="adminSenha">Senha</label>
+                    <label for="adminSenha">Password</label>
                     <input type="password" id="adminSenha" name="adminSenha" autocomplete="current-password" required>
                 </div>
-                <button type="submit" class="btn btn-primary btn-admin-login">Entrar</button>
+                <button type="submit" class="btn btn-primary btn-admin-login">Login</button>
             </form>
             <p class="admin-login-erro" id="adminLoginErro"></p>
-            <a href="index.html" class="admin-voltar-site">← Voltar ao site</a>
+            <a href="index.html" class="admin-voltar-site">← Back to site</a>
         </div>
     </div>
 
@@ -40,10 +40,10 @@
     <div class="admin-painel" id="adminPainel" style="display: none;">
         <header class="admin-header">
             <div class="admin-header-inner">
-                <h1>Painel do Administrador</h1>
+                <h1>Administrator Panel</h1>
                 <div class="admin-header-acoes">
-                    <a href="produtos.html" class="btn btn-detalhes" target="_blank">Ver Site</a>
-                    <button type="button" class="btn btn-carrinho" id="btnAdminLogout">Sair</button>
+                    <a href="produtos.html" class="btn btn-detalhes" target="_blank">View Site</a>
+                    <button type="button" class="btn btn-carrinho" id="btnAdminLogout">Logout</button>
                 </div>
             </div>
         </header>
@@ -51,26 +51,26 @@
         <main class="admin-main">
             <div class="container">
                 <div class="admin-toolbar">
-                    <h2>Produtos</h2>
-                    <button type="button" class="btn btn-primary" id="btnAdminNovoProduto">+ Adicionar Produto</button>
+                    <h2>Products</h2>
+                    <button type="button" class="btn btn-primary" id="btnAdminNovoProduto">+ Add Product</button>
                 </div>
 
                 <div class="admin-produtos-table-wrap">
                     <table class="admin-produtos-table">
                         <thead>
                             <tr>
-                                <th>Imagem</th>
-                                <th>Nome</th>
-                                <th>Categoria</th>
-                                <th>Preço</th>
-                                <th>Ações</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="adminProdutosBody">
                             <!-- Linhas preenchidas via JavaScript -->
                         </tbody>
                     </table>
-                    <p class="admin-vazio" id="adminVazio" style="display: none;">Nenhum produto cadastrado.</p>
+                    <p class="admin-vazio" id="adminVazio" style="display: none;">No products registered.</p>
                 </div>
             </div>
         </main>
@@ -80,63 +80,63 @@
     <div class="admin-modal" id="adminModal" style="display: none;">
         <div class="admin-modal-content">
             <div class="admin-modal-header">
-                <h3 id="adminModalTitulo">Novo Produto</h3>
-                <button type="button" class="admin-modal-fechar" id="adminModalFechar" aria-label="Fechar">×</button>
+                <h3 id="adminModalTitulo">New Product</h3>
+                <button type="button" class="admin-modal-fechar" id="adminModalFechar" aria-label="Close">×</button>
             </div>
             <form id="adminProdutoForm">
                 <input type="hidden" id="adminProdutoId">
 
                 <div class="form-group">
-                    <label for="adminProdutoNome">Nome *</label>
+                    <label for="adminProdutoNome">Name *</label>
                     <input type="text" id="adminProdutoNome" required>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="adminProdutoPreco">Preço (R$) *</label>
+                        <label for="adminProdutoPreco">Price (R$) *</label>
                         <input type="number" id="adminProdutoPreco" min="0" step="0.01" required>
                     </div>
                     <div class="form-group">
-                        <label for="adminProdutoCategoria">Categoria *</label>
+                        <label for="adminProdutoCategoria">Category *</label>
                         <input type="text" id="adminProdutoCategoria" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="adminProdutoDosagem">Dosagem</label>
+                        <label for="adminProdutoDosagem">Dosage</label>
                         <input type="text" id="adminProdutoDosagem">
                     </div>
                     <div class="form-group">
-                        <label for="adminProdutoForma">Forma de Apresentação</label>
+                        <label for="adminProdutoForma">Presentation Form</label>
                         <input type="text" id="adminProdutoForma">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="adminProdutoArmazenamento">Armazenamento</label>
+                        <label for="adminProdutoArmazenamento">Storage</label>
                         <input type="text" id="adminProdutoArmazenamento">
                     </div>
                     <div class="form-group">
-                        <label for="adminProdutoValidade">Prazo de Validade</label>
+                        <label for="adminProdutoValidade">Shelf Life</label>
                         <input type="text" id="adminProdutoValidade">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="adminProdutoImagem">Imagem (caminho ou URL)</label>
-                    <input type="text" id="adminProdutoImagem" placeholder="./img/meu-produto.png">
+                    <label for="adminProdutoImagem">Image (path or URL)</label>
+                    <input type="text" id="adminProdutoImagem" placeholder="./img/my-product.png">
                 </div>
 
                 <div class="form-group">
-                    <label for="adminProdutoDescricao">Descrição Completa *</label>
+                    <label for="adminProdutoDescricao">Full Description *</label>
                     <textarea id="adminProdutoDescricao" rows="4" required></textarea>
                 </div>
 
                 <div class="admin-modal-botoes">
-                    <button type="button" class="btn btn-carrinho" id="adminModalCancelar">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar Produto</button>
+                    <button type="button" class="btn btn-carrinho" id="adminModalCancelar">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Product</button>
                 </div>
             </form>
         </div>
