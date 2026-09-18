@@ -25,7 +25,7 @@ const criarDb = require('./db');
         formaApresentacao: 'Powder',
         armazenamento: 'Refrigerated',
         prazoValidade: '24 months',
-        imagem: './img/hero.png',
+        imagem: './img/Adipotide.png',
         descricaoCompleta: 'Product created via PostgreSQL.'
     });
     console.log('Created:', novo.id, '-', novo.nome);

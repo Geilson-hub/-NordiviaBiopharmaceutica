@@ -158,7 +158,7 @@ function renderizarProdutosGrid(container, filtroCategoria = 'Todas') {
         const card = document.createElement('div');
         card.className = 'produto-card';
         card.innerHTML = `
-            <div class="produto-icon"><img src="${produto.imagem || './img/hero.png'}" alt="${produto.nome}" onerror="this.src='./img/hero.png'"></div>
+            <div class="produto-icon"><img src="${produto.imagem || './img/Adipotide.png'}" alt="${produto.nome}" onerror="this.src='./img/Adipotide.png'"></div>
             <h3 class="produto-nome">${produto.nome}</h3>
             <p class="produto-preco">${formatarMoeda(produto.preco)}</p>
             <p class="produto-descricao"><strong>Description:</strong> ${descricaoCurta}</p>

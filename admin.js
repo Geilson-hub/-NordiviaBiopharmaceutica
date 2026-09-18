@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         lista.forEach(produto => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><img src="${produto.imagem || './img/hero.png'}" alt="${produto.nome}" class="admin-produto-img" onerror="this.src='./img/hero.png'"></td>
+                <td><img src="${produto.imagem || './img/Adipotide.png'}" alt="${produto.nome}" class="admin-produto-img" onerror="this.src='./img/Adipotide.png'"></td>
                 <td>${produto.nome}</td>
                 <td>${produto.categoria}</td>
                 <td class="admin-produto-preco">${formatarMoeda(produto.preco)}</td>
