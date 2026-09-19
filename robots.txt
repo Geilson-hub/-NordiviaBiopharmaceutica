@@ -1,0 +1,11 @@
+# Robots.txt - Nordivia Biopharmaceuticals
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://nordiviabiopharmaceuticals.com/sitemap.xml
+
+# Disallow admin pages from search engines
+Disallow: /admin.html
+Disallow: /checkout.html
+Disallow: /carrinho.html
