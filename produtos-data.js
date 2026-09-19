@@ -465,4 +465,4 @@ const PRODUTOS_PROMISE = (async function carregarProdutos() {
     produtos = PRODUTOS_PADRAO;
 })();
 
-window.PRODUTOS_PROMISE = PRODUTOS_PROMISE;
+if (typeof window !== 'undefined') window.PRODUTOS_PROMISE = PRODUTOS_PROMISE;
