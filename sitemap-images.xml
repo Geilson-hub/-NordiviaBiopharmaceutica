@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://nordiviabiopharmaceuticals.com/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nordiviabiopharmaceuticals.com/logo2.jpg</image:loc>
+      <image:title>Nordivia Biopharmaceuticals Logo</image:title>
+      <image:caption>Official logo of Nordivia Biopharmaceuticals - Biopharmaceutical company in Montreal, Canada</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

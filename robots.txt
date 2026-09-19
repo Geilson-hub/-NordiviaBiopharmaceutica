@@ -2,8 +2,9 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemap locations
 Sitemap: https://nordiviabiopharmaceuticals.com/sitemap.xml
+Sitemap: https://nordiviabiopharmaceuticals.com/sitemap-images.xml
 
 # Disallow admin pages from search engines
 Disallow: /admin.html
