@@ -83,30 +83,7 @@
         armazenamento: "Room temperature",
         prazoValidade: "24 months"
     },
-    {
-        id: "cjc-1295-hero",
-        preco: 0,
-        nome: "CJC-1295 Hero",
-        imagem: "./img/CJC1295.png",
-        descricaoCompleta: "CJC-1295 is a growth hormone releasing hormone (GHRH) analog with extended half-life. Stimulates sustained GH release, promoting sleep, muscle recovery, fat burning and anti-aging. The DAC (Drug Affinity Complex) prolongs action for up to 6-8 days.",
-        categoria: "Growth Hormone",
-        dosagem: "2mg",
-        formaApresentacao: "Lyophilized powder for reconstitution",
-        armazenamento: "Refrigerated (2-8°C)",
-        prazoValidade: "24 months"
-    },
-    {
-        id: "cjc-1295-with-dac-5mg",
-        preco: 0,
-        nome: "CJC-1295 with DAC-5mg",
-        imagem: "./img/CJC1295 DAC.png",
-        descricaoCompleta: "Growth hormone releasing hormone (GHRH) analog. Stimulates sustained GH release, promoting sleep, muscle recovery and fat burning. The DAC (Drug Affinity Complex) extends the compound's half-life to up to 6-8 days.",
-        categoria: "Growth Hormone",
-        dosagem: "5mg",
-        formaApresentacao: "Lyophilized powder for reconstitution",
-        armazenamento: "Refrigerated (2-8°C)",
-        prazoValidade: "24 months"
-    },
+
     {
         id: "dsip-hero",
         preco: 0,
@@ -159,11 +136,11 @@
     },
 
     {
-        id: "glow-hero",
+        id: "glow",
         preco: 0,
-        nome: "Glow Hero",
+        nome: "Glow",
         imagem: "./img/Glow.png",
-        descricaoCompleta: "Glow Hero is a premium bioactive peptide formulation for skincare. Promotes luminosity, elasticity and deep skin hydration, combating signs of aging and improving skin texture.",
+        descricaoCompleta: "Glow is a premium bioactive peptide formulation for skincare. Promotes luminosity, elasticity and deep skin hydration, combating signs of aging and improving skin texture.",
         categoria: "Anti-aging",
         dosagem: "50mg",
         formaApresentacao: "Lyophilized powder for reconstitution",
