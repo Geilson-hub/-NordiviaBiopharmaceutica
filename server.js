@@ -35,7 +35,16 @@ const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
 
 const tokens = new Set();
 
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+            imgSrc: ["'self'", "data:", "https:"],
+            styleSrc: ["'self'", "'unsafe-inline'"],
+        }
+    }
+}));
 app.use(cors({ origin: CORS_ORIGIN }));
 app.use(express.json());
 app.use(express.static(__dirname));
