@@ -276,3 +276,41 @@
         width: 100%;
     }
 }
+
+/* ========== WORK SCHEDULE SECTION ========== */
+.admin-dias-semana {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.admin-dia-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    color: var(--text);
+    user-select: none;
+}
+
+.admin-dia-checkbox:hover {
+    background: rgba(0, 180, 216, 0.15);
+}
+
+.admin-dia-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.admin-dia-checkbox:has(input:checked) {
+    background: var(--primary);
+    color: var(--white);
+}

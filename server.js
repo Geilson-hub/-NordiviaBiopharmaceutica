@@ -110,6 +110,31 @@ app.delete('/api/produtos/:id', autenticado, handler(async (req, res) => {
     res.json(await db.removerProduto(req.params.id));
 }));
 
+    /* =====================================================
+       EMPLOYEES (Work Schedule)
+       ===================================================== */
+app.get('/api/funcionarios', handler(async (req, res) => {
+    res.json(await db.listarFuncionarios());
+}));
+
+app.post('/api/funcionarios', autenticado, handler(async (req, res) => {
+    const dados = req.body || {};
+    if (!dados.nome || !dados.funcao || !dados.diasSemana || !dados.horaEntrada || !dados.horaSaida) {
+        return res.status(400).json({ erro: 'Incomplete data' });
+    }
+    const novo = await db.criarFuncionario(dados);
+    res.status(201).json(novo);
+}));
+
+app.put('/api/funcionarios/:id', autenticado, handler(async (req, res) => {
+    const atualizado = await db.atualizarFuncionario(req.params.id, req.body || {});
+    res.json(atualizado);
+}));
+
+app.delete('/api/funcionarios/:id', autenticado, handler(async (req, res) => {
+    res.json(await db.removerFuncionario(req.params.id));
+}));
+
 let db;
 
 async function iniciar() {
