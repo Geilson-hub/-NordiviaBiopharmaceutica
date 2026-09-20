@@ -50,7 +50,6 @@
 
         <main class="admin-main">
             <div class="container">
-                <!-- SEÇÃO DE PRODUTOS -->
                 <div class="admin-toolbar">
                     <h2>Products</h2>
                     <button type="button" class="btn btn-primary" id="btnAdminNovoProduto">+ Add Product</button>
@@ -72,30 +71,6 @@
                         </tbody>
                     </table>
                     <p class="admin-vazio" id="adminVazio" style="display: none;">No products registered.</p>
-                </div>
-
-                <!-- SEÇÃO DE JORNADA DE TRABALHO -->
-                <div class="admin-toolbar" style="margin-top: 40px;">
-                    <h2>Work Schedule</h2>
-                    <button type="button" class="btn btn-primary" id="btnAdminNovoFuncionario">+ Add Employee</button>
-                </div>
-
-                <div class="admin-produtos-table-wrap">
-                    <table class="admin-produtos-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Role</th>
-                                <th>Work Days</th>
-                                <th>Hours</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminFuncionariosBody">
-                            <!-- Linhas preenchidas via JavaScript -->
-                        </tbody>
-                    </table>
-                    <p class="admin-vazio" id="adminFuncionariosVazio" style="display: none;">No employees registered.</p>
                 </div>
             </div>
         </main>
@@ -162,77 +137,6 @@
                 <div class="admin-modal-botoes">
                     <button type="button" class="btn btn-carrinho" id="adminModalCancelar">Cancel</button>
                     <button type="submit" class="btn btn-primary">Save Product</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL DE FORMULÁRIO DO FUNCIONÁRIO -->
-    <div class="admin-modal" id="adminModalFuncionario" style="display: none;">
-        <div class="admin-modal-content">
-            <div class="admin-modal-header">
-                <h3 id="adminModalFuncionarioTitulo">New Employee</h3>
-                <button type="button" class="admin-modal-fechar" id="adminModalFuncionarioFechar" aria-label="Close">×</button>
-            </div>
-            <form id="adminFuncionarioForm">
-                <input type="hidden" id="adminFuncionarioId">
-
-                <div class="form-group">
-                    <label for="adminFuncionarioNome">Name *</label>
-                    <input type="text" id="adminFuncionarioNome" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="adminFuncionarioFuncao">Role/Position *</label>
-                    <input type="text" id="adminFuncionarioFuncao" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Work Days *</label>
-                    <div class="admin-dias-semana">
-                        <label class="admin-dia-checkbox">
-                            <input type="checkbox" name="diasSemana" value="Mon"> Mon
-                        </label>
-                        <label class="admin-dia-checkbox">
-                            <input type="checkbox" name="diasSemana" value="Tue"> Tue
-                        </label>
-                        <label class="admin-dia-checkbox">
-                            <input type="checkbox" name="diasSemana" value="Wed"> Wed
-                        </label>
-                        <label class="admin-dia-checkbox">
-                            <input type="checkbox" name="diasSemana" value="Thu"> Thu
-                        </label>
-                        <label class="admin-dia-checkbox">
-                            <input type="checkbox" name="diasSemana" value="Fri"> Fri
-                        </label>
-                        <label class="admin-dia-checkbox">
-                            <input type="checkbox" name="diasSemana" value="Sat"> Sat
-                        </label>
-                        <label class="admin-dia-checkbox">
-                            <input type="checkbox" name="diasSemana" value="Sun"> Sun
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="adminFuncionarioEntrada">Start Time *</label>
-                        <input type="time" id="adminFuncionarioEntrada" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="adminFuncionarioSaida">End Time *</label>
-                        <input type="time" id="adminFuncionarioSaida" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="adminFuncionarioObservacoes">Notes</label>
-                    <textarea id="adminFuncionarioObservacoes" rows="2" placeholder="Additional notes..."></textarea>
-                </div>
-
-                <div class="admin-modal-botoes">
-                    <button type="button" class="btn btn-carrinho" id="adminModalFuncionarioCancelar">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Employee</button>
                 </div>
             </form>
         </div>

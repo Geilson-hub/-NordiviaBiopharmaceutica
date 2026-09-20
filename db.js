@@ -21,8 +21,6 @@ const DATA_DIR = path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'produtos.json');
 
 const COLS = 'id, nome, preco, categoria, dosagem, forma_apresentacao, armazenamento, prazo_validade, imagem, descricao_completa';
-const COLS_FUNC = 'id, nome, funcao, dias_semana, hora_entrada, hora_saida, observacoes';
-const DATA_FUNC_FILE = path.join(DATA_DIR, 'funcionarios.json');
 
 async function obterProdutosPadrao() {
     const code = fs.readFileSync(path.join(__dirname, 'produtos-data.js'), 'utf8') +
@@ -109,18 +107,6 @@ module.exports = async function criarDb(opcoes = {}) {
             )
         `);
 
-        await pool.query(`
-            CREATE TABLE IF NOT EXISTS funcionarios (
-                id TEXT PRIMARY KEY,
-                nome TEXT NOT NULL,
-                funcao TEXT NOT NULL,
-                dias_semana TEXT NOT NULL DEFAULT '',
-                hora_entrada TEXT NOT NULL DEFAULT '',
-                hora_saida TEXT NOT NULL DEFAULT '',
-                observacoes TEXT NOT NULL DEFAULT ''
-            )
-        `);
-
         const { rows } = await pool.query('SELECT COUNT(*)::int AS total FROM produtos');
         if (rows[0].total === 0) {
             const padrao = await obterProdutosPadrao();
@@ -133,10 +119,6 @@ module.exports = async function criarDb(opcoes = {}) {
         }
     } else if (!fs.existsSync(DATA_FILE)) {
         salvarJson(await obterProdutosPadrao());
-    }
-
-    if (!pool && !fs.existsSync(DATA_FUNC_FILE)) {
-        salvarFuncionariosJson([]);
     }
 
     /* ---------- JSON file ---------- */
@@ -152,21 +134,6 @@ module.exports = async function criarDb(opcoes = {}) {
     function salvarJson(lista) {
         if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
         fs.writeFileSync(DATA_FILE, JSON.stringify(lista, null, 4), 'utf8');
-    }
-
-    /* ---------- Employee JSON helpers ---------- */
-    function lerFuncionariosJson() {
-        if (!fs.existsSync(DATA_FUNC_FILE)) return [];
-        try {
-            return JSON.parse(fs.readFileSync(DATA_FUNC_FILE, 'utf8'));
-        } catch (e) {
-            return [];
-        }
-    }
-
-    function salvarFuncionariosJson(lista) {
-        if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-        fs.writeFileSync(DATA_FUNC_FILE, JSON.stringify(lista, null, 4), 'utf8');
     }
 
     /* ---------- Operations ---------- */
@@ -233,103 +200,11 @@ module.exports = async function criarDb(opcoes = {}) {
         return { ok: true };
     }
 
-    /* ---------- Employees ---------- */
-    function montarFuncionario(dados) {
-        return {
-            id: dados.id,
-            nome: dados.nome,
-            funcao: dados.funcao,
-            diasSemana: dados.diasSemana || '',
-            horaEntrada: dados.horaEntrada || '',
-            horaSaida: dados.horaSaida || '',
-            observacoes: dados.observacoes || ''
-        };
-    }
-
-    function rowParaFuncionario(r) {
-        return {
-            id: r.id,
-            nome: r.nome,
-            funcao: r.funcao,
-            diasSemana: r.dias_semana,
-            horaEntrada: r.hora_entrada,
-            horaSaida: r.hora_saida,
-            observacoes: r.observacoes
-        };
-    }
-
-    async function listarFuncionarios() {
-        if (pool) {
-            const { rows } = await pool.query(`SELECT ${COLS_FUNC} FROM funcionarios ORDER BY nome`);
-            return rows.map(rowParaFuncionario);
-        }
-        return lerFuncionariosJson();
-    }
-
-    async function criarFuncionario(dados) {
-        const novo = montarFuncionario({ ...dados, id: dados.id || gerarId(dados.nome) });
-
-        if (pool) {
-            const existe = await pool.query('SELECT 1 FROM funcionarios WHERE id = $1', [novo.id]);
-            if (existe.rows.length > 0) throw erro(409, 'An employee with this ID already exists');
-
-            await pool.query(
-                `INSERT INTO funcionarios (${COLS_FUNC}) VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-                [novo.id, novo.nome, novo.funcao, novo.diasSemana, novo.horaEntrada, novo.horaSaida, novo.observacoes]
-            );
-            return novo;
-        }
-
-        const lista = lerFuncionariosJson();
-        if (lista.some(f => f.id === novo.id)) throw erro(409, 'An employee with this ID already exists');
-        lista.push(novo);
-        salvarFuncionariosJson(lista);
-        return novo;
-    }
-
-    async function atualizarFuncionario(id, dados) {
-        const valores = montarFuncionario({ id, ...dados });
-
-        if (pool) {
-            const res = await pool.query(
-                `UPDATE funcionarios SET nome=$2, funcao=$3, dias_semana=$4, hora_entrada=$5, hora_saida=$6, observacoes=$7 WHERE id=$1`,
-                [id, valores.nome, valores.funcao, valores.diasSemana, valores.horaEntrada, valores.horaSaida, valores.observacoes]
-            );
-            if (res.rowCount === 0) throw erro(404, 'Employee not found');
-            return valores;
-        }
-
-        const lista = lerFuncionariosJson();
-        const index = lista.findIndex(f => f.id === id);
-        if (index === -1) throw erro(404, 'Employee not found');
-        lista[index] = valores;
-        salvarFuncionariosJson(lista);
-        return valores;
-    }
-
-    async function removerFuncionario(id) {
-        if (pool) {
-            const res = await pool.query('DELETE FROM funcionarios WHERE id = $1', [id]);
-            if (res.rowCount === 0) throw erro(404, 'Employee not found');
-            return { ok: true };
-        }
-
-        const lista = lerFuncionariosJson();
-        const nova = lista.filter(f => f.id !== id);
-        if (nova.length === lista.length) throw erro(404, 'Employee not found');
-        salvarFuncionariosJson(nova);
-        return { ok: true };
-    }
-
     return {
         usarPostgres: !!pool,
         listarProdutos,
         criarProduto,
         atualizarProduto,
-        removerProduto,
-        listarFuncionarios,
-        criarFuncionario,
-        atualizarFuncionario,
-        removerFuncionario
+        removerProduto
     };
 };
